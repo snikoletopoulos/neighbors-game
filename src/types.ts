@@ -1,6 +1,10 @@
 export interface ICountry {
-  code3: String;
-  code: String;
-  name: String;
-  number: String;
+  name: {
+    common: string;
+  };
+  cca2: string;
+  cca3: string;
+  borders: CountrtCode3[];
 }
+
+type CountrtCode3 = string
