@@ -1,5 +1,9 @@
-import React from "react";
+const CardArea = (props: Props) => (
+  <section id="neighbours-panel">{props.children}</section>
+);
 
-export default function CardArea(props) {
-	return <section id="neighbours-panel">{props.children}</section>;
+export default CardArea;
+
+interface Props {
+  children: React.ReactNode;
 }

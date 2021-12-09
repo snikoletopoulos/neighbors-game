@@ -1,11 +1,14 @@
-import React from "react";
-import { country2emoji2 } from "../logic";
+import { getEmojiForCountry } from "../logic";
 
-export default function Title({ country }) {
-	return (
-		<section id="my-country">
-			<span id="my-country-flag">{country2emoji2(country.alpha2Code)}</span>
-			<h1 id="my-country-name">{country.name}</h1>
-		</section>
-	);
+const Title = ({ country }: Props) => (
+  <section id="my-country">
+    <span id="my-country-flag">{getEmojiForCountry(country.alpha2Code)}</span>
+    <h1 id="my-country-name">{country.name}</h1>
+  </section>
+);
+
+export default Title;
+
+interface Props {
+	country: Country;
 }
