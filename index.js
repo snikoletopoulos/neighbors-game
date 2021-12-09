@@ -77,33 +77,33 @@ async function gameUpdate(gameState) {
   choices.map(country => {
     const card = new Card(country);
     card.render();
-    card.card.addEventListener(
-      "click",
-      () => {
-        if (borders.includes(card.code)) {
-          card.card.classList.add("neighbour-is-valid");
-          updateProgressBar(borders.length, gameState);
-
-          if (gameState.progressBarCounter === borders.length) {
-            endGameState(borders, gameState);
-          }
-          gameState.score.textContent -= -5;
-        } else {
-          card.card.classList.add("neighbour-is-invalid");
-          gameState.wrongAnswersCounter++;
-
-          const hasAvailableWrongAnswers =
-            gameState.wrongAnswersCounter !== borders.length;
-          if (!hasAvailableWrongAnswers) {
-            endGameState(borders, gameState);
-          }
-          gameState.score.textContent -= 3;
-        }
-      },
-      { once: true }
-    );
+    card.card.addEventListener("click", checkIfCardIsCorrect.bind(this, card, borders), { once: true });
   });
 }
+
+const checkIfCardIsCorrect = (card, borders) => {
+  const isCorrect = borders.includes(card.code);
+  if (isCorrect) {
+    card.card.classList.add("neighbour-is-valid");
+    updateProgressBar(borders.length, gameState);
+
+    const hasWon = gameState.progressBarCounter === borders.length;
+    if (hasWon) {
+      endGameState(borders, gameState);
+    }
+    gameState.score.textContent -= -5;
+  } else {
+    card.card.classList.add("neighbour-is-invalid");
+    gameState.wrongAnswersCounter++;
+
+    const hasAvailableWrongAnswers =
+      gameState.wrongAnswersCounter !== borders.length;
+    if (!hasAvailableWrongAnswers) {
+      endGameState(borders, gameState);
+    }
+    gameState.score.textContent -= 3;
+  }
+};
 
 function updateProgressBar(rightAnswers, gameState) {
   if (!rightAnswers) {
