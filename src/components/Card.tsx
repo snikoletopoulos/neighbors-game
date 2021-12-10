@@ -1,21 +1,16 @@
 import { useState } from "react";
 import { getEmojiForCountry } from "../logic.js";
+import type { ICountry } from "../types.js";
 
-export default function Card({
-  country,
-  borders,
-  progress,
-  rightAnswers,
-  setRigthAnswers,
-}) {
+const Card = (props: Props) => {
   // function cardClick(e) {
-  // 	if (borders.includes(card .code)) {
+  // 	if (props.borders.includes(card .code)) {
 
-  // 		updateProgressBar(borders.length, gameState);
+  // 		updateProgressBar(props.borders.length, gameState);
 
-  // 		if (gameState.progressBarCounter === borders.length)
+  // 		if (gameState.progressBarCounter === props.borders.length)
 
-  // 			endGameState(borders, gameState);
+  // 			endGameState(props.borders, gameState);
 
   // 		gameState.score.textContent -= -5;
 
@@ -25,20 +20,20 @@ export default function Card({
 
   // 		gameState.wrongAnswersCounter++;
 
-  // 		if (gameState.wrongAnswersCounter === borders.length)
+  // 		if (gameState.wrongAnswersCounter === props.borders.length)
 
-  // 			endGameState(borders, gameState);
+  // 			endGameState(props.borders, gameState);
 
   // 		gameState.score.textContent -= 3;
   // 	}
   // }
   const [cardState, setCardState] = useState("");
 
-  const handleCardClick = target => {
-    if (borders.includes(country.code3)) {
+  const handleCardClick = () => {
+    if (props.borders.includes(props.country.code3)) {
       setCardState("neighbour-is-valid");
-      setRigthAnswers(prevValue => prevValue + 1);
-      progress((100 * rightAnswers) / borders.length);
+      props.setRigthAnswers(prevValue => prevValue + 1);
+      props.progress((100 * props.rightAnswers) / props.borders.length);
     } else {
       setCardState("neighbour-is-invalid");
     }
@@ -46,8 +41,18 @@ export default function Card({
 
   return (
     <article className={cardState} onClick={handleCardClick}>
-      <div>{getEmojiForCountry(country.code)}</div>
-      <p>{country.name}</p>
+      <div>{getEmojiForCountry(props.country.code)}</div>
+      <p>{props.country.name}</p>
     </article>
   );
+};
+
+export default Card;
+
+interface Props {
+  country: ICountry;
+  borders: string[];
+  progress: (value: number) => void;
+  rightAnswers: () => void;
+  setRigthAnswers: (prevValue: number) => void;
 }
