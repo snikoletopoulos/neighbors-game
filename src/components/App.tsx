@@ -113,3 +113,15 @@ const App = () => {
 };
 
 export default App;
+
+interface IGameState {
+    round: number;
+    score: number;
+    mainCountry: {
+      name: string;
+      alpha2Code: string;
+      borders: string[];
+    },
+    hasGameEnded: boolean;
+    rightAnswers: number;
+}
