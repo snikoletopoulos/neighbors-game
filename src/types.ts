@@ -5,7 +5,7 @@ export interface ICountry {
   cca2: string;
   cca3: string;
   alpha2Code: string;
-  borders: CountrtCode3[];
+  borders: CountryCode3[];
 }
 
-type CountrtCode3 = string
+type CountryCode3 = string
