@@ -6,8 +6,7 @@ import CardArea from "./CardArea";
 import Card from "./Card";
 import {
   fetchCountries,
-  countries,
-  pickRandomCountry,
+  pickRandomCountryWithBorders,
   cardPick,
 } from "../logic";
 
@@ -60,7 +59,7 @@ const App = () => {
   }
 
   // Going to the next round
-  const Round = () => {
+  const nextRound = () => {
     setProgress(0);
     setGameState(prevValue => {
       return {
