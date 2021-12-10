@@ -20,14 +20,14 @@ export const pickRandomCountryWithBorders = (noBorderCountries: ICountry[], hist
   }
 }
 
-export const cardPick = (mainCountry: ICountry) => {
+export const cardPick = (mainCountry: ICountry): ICountry[] => {
   const neighbours = [
     ...countries.filter(country => mainCountry.borders.includes(country.code3)),
   ];
-  const shuffledCountries = shuffleArray<ICountry[]>(countries);
+  const shuffledCountries = shuffleArray<ICountry>(countries);
   for (let i = 0; neighbours.length < mainCountry.borders.length * 3; i++) {
     if (
-      !mainCountry.borders.includes(shuffledCountries[i]) &&
+      !mainCountry.borders.includes(shuffledCountries[i].cca3) &&
       !(shuffledCountries[i] === mainCountry)
     )
       neighbours.push(shuffledCountries[i]);
