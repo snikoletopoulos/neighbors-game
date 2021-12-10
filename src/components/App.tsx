@@ -51,7 +51,7 @@ const App = () => {
     setProgress(0);
     setGameState(prevValue => ({
       ...prevValue,
-      mainCountry: pickRandomCountry(noBorderCountries, mainCountryHistory),
+      mainCountry: pickRandomCountryWithBorders(noBorderCountries, mainCountryHistory),
       round: 1,
       hasGameEnded: false,
     }));
@@ -61,15 +61,13 @@ const App = () => {
   // Going to the next round
   const nextRound = () => {
     setProgress(0);
-    setGameState(prevValue => {
-      return {
+    setGameState(prevValue => ({
         ...prevValue,
-        mainCountry: pickRandomCountry(noBorderCountries, mainCountryHistory),
+        mainCountry: pickRandomCountryWithBorders(noBorderCountries, mainCountryHistory),
         round: ++prevValue.round,
         hasGameEnded: false,
-      };
-    });
-  }
+  });
+    )
 
   const handleRightAnswer = () => {
     setGameState(prevValue => ({
