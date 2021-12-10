@@ -15,7 +15,7 @@ const Sidebar = ({ round, score, gameState, reset, next }: Props) => (
     </div>
     <p
       className={"btn" + (gameState ? " btn-active" : "")}
-      onClick={gameState ? next : null}
+      onClick={gameState ? next : undefined}
       id="btn-next-round"
     >
       Επόμενη χώρα
