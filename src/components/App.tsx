@@ -17,7 +17,7 @@ let noBorderCountries = [];
 const App = () => {
   const [progress, setProgress] = useState(0);
   const [countryCards, setCountryCards] = useState([]);
-  const [gameState, setGameState] = useState({
+  const [gameState, setGameState] = useState<IGameState>({
     round: 1,
     score: 0,
     mainCountry: {
@@ -33,9 +33,9 @@ const App = () => {
   useEffect(() => {
     (async () => {
       noBorderCountries = await fetchCountries();
-      setGameState(prevValue => ({
+      setGameState(( prevValue: IGameState ): IGameState => ({
         ...prevValue,
-        mainCountry: pickRandomCountry(noBorderCountries, mainCountryHistory),
+        mainCountry: pickRandomCountryWithBorders(noBorderCountries, mainCountryHistory),
       }));
     })();
   }, []);
