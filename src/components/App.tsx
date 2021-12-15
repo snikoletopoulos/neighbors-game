@@ -124,3 +124,12 @@ interface IGameState {
     hasGameEnded: boolean;
     rightAnswers: number;
 }
+
+export interface ILoadingCountry {
+  name: {
+    official: string;
+    common: string;
+  };
+  cca2: string;
+  borders: ICountry[];
+}
