@@ -7,7 +7,7 @@ export const fetchCountries = async () => {
     throw new Error(response.status.toString());
   }
   const countries = response.data;
-  return countries.filter((country: ICountry) => country.borders.length > 0);
+  return countries.filter((country: ICountry) => Array.isArray(country.borders) ? country.borders.length > 0 : false);
 }
 
 export const pickRandomCountryWithBorders = (noBorderCountries: ICountry[], history): ICountry => {

@@ -42,7 +42,7 @@ const App = () => {
 
   // Updating the cards when the title changes
   useEffect(() => {
-    setCountryCards(cardPick(gameState.mainCountry));
+    setCountryCards(cardPick(gameState.mainCountry as ICountry));
   }, [gameState.mainCountry]);
 
   // Reseting the game
@@ -95,7 +95,7 @@ const App = () => {
               <Card
                 key={index}
                 country={card}
-                borders={gameState.mainCountry.borders}
+                borders={gameState.mainCountry.borders as string[] ?? []}
                 progress={setProgress}
                 rightAnswers={gameState.rightAnswers}
                 setRigthAnswers={handleRightAnswer}
