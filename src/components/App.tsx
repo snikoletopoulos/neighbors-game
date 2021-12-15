@@ -33,10 +33,15 @@ const App = () => {
   useEffect(() => {
     (async () => {
       noBorderCountries = await fetchCountries();
-      setGameState(( prevValue: IGameState ): IGameState => ({
-        ...prevValue,
-        mainCountry: pickRandomCountryWithBorders(noBorderCountries, mainCountryHistory),
-      }));
+      setGameState(
+        (prevValue: IGameState): IGameState => ({
+          ...prevValue,
+          mainCountry: pickRandomCountryWithBorders(
+            noBorderCountries,
+            mainCountryHistory
+          ),
+        })
+      );
     })();
   }, []);
 
@@ -52,30 +57,36 @@ const App = () => {
     setProgress(0);
     setGameState(prevValue => ({
       ...prevValue,
-      mainCountry: pickRandomCountryWithBorders(noBorderCountries, mainCountryHistory),
+      mainCountry: pickRandomCountryWithBorders(
+        noBorderCountries,
+        mainCountryHistory
+      ),
       round: 1,
       hasGameEnded: false,
     }));
     mainCountryHistory = [];
-  }
+  };
 
   // Going to the next round
   const nextRound = () => {
     setProgress(0);
     setGameState(prevValue => ({
-        ...prevValue,
-        mainCountry: pickRandomCountryWithBorders(noBorderCountries, mainCountryHistory),
-        round: ++prevValue.round,
-        hasGameEnded: false,
-  });
-    )
+      ...prevValue,
+      mainCountry: pickRandomCountryWithBorders(
+        noBorderCountries,
+        mainCountryHistory
+      ),
+      round: ++prevValue.round,
+      hasGameEnded: false,
+    }));
+  };
 
   const handleRightAnswer = () => {
     setGameState(prevValue => ({
       ...prevValue,
       rightAnswers: prevValue.rightAnswers + 1,
     }));
-  }
+  };
 
   return (
     <div>
@@ -103,9 +114,6 @@ const App = () => {
             ))}
           </CardArea>
         </main>
-      </div>
-      <div>
-        <pre>{JSON.stringify(gameState.mainCountry, null, 2)}</pre>
       </div>
     </div>
   );
