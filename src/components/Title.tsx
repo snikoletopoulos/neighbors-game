@@ -1,5 +1,6 @@
 import { getEmojiForCountry } from "../logic";
 import type ICountry from "./types/country.interface";
+import type { ILoadingCountry } from "./App";
 
 const Title = ({ country }: Props) => (
   <section id="my-country">
@@ -11,5 +12,5 @@ const Title = ({ country }: Props) => (
 export default Title;
 
 interface Props {
-	country: ICountry;
+  country: ICountry | ILoadingCountry;
 }
