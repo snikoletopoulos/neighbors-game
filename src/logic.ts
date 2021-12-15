@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { ICountry } from "./types";
+import type ICountry from "./components/types/country.interface";
 
 export const fetchCountries = async () => {
   const response = await axios.get("https://restcountries.com/v3.1/all");

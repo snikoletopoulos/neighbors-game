@@ -9,6 +9,7 @@ import {
   pickRandomCountryWithBorders,
   cardPick,
 } from "../logic";
+import type ICountry from "./types/country.interface";
 
 let mainCountryHistory = [];
 let noBorderCountries = [];

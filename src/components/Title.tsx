@@ -1,5 +1,5 @@
 import { getEmojiForCountry } from "../logic";
-import type { ICountry } from "../types";
+import type ICountry from "./types/country.interface";
 
 const Title = ({ country }: Props) => (
   <section id="my-country">
