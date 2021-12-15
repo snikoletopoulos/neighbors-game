@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import Sidebar from "./Sidebar";
 import Title from "./Title";
 import ProgressBar from "./ProgressBar";
-import CardArea from "./CardArea";
-import Card from "./Card";
+import CardArea from "./Neighbors/CardArea";
+import Card from "./Neighbors/Card";
 import {
   fetchCountries,
   pickRandomCountryWithBorders,

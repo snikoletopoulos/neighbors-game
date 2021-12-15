@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { getEmojiForCountry } from "../logic.js";
-import type { ICountry } from "../types.js";
+import { getEmojiForCountry } from "../../logic.js";
+import type ICountry from "../types/country.interface.js";
 
 const Card = (props: Props) => {
   // function cardClick(e) {
@@ -27,12 +27,12 @@ const Card = (props: Props) => {
   // 		gameState.score.textContent -= 3;
   // 	}
   // }
-  const [cardState, setCardState] = useState("");
+  const [cardState, setCardState] = useState<string>("");
 
   const handleCardClick = () => {
-    if (props.borders.includes(props.country.code3)) {
+    if (props.borders.includes(props.country.cca3)) {
       setCardState("neighbour-is-valid");
-      props.setRigthAnswers(prevValue => prevValue + 1);
+      props.setRigthAnswers();
       props.progress((100 * props.rightAnswers) / props.borders.length);
     } else {
       setCardState("neighbour-is-invalid");
@@ -41,7 +41,7 @@ const Card = (props: Props) => {
 
   return (
     <article className={cardState} onClick={handleCardClick}>
-      <div>{getEmojiForCountry(props.country.code)}</div>
+      <div>{getEmojiForCountry(props.country.cca2)}</div>
       <p>{props.country.name}</p>
     </article>
   );
@@ -53,6 +53,6 @@ interface Props {
   country: ICountry;
   borders: string[];
   progress: (value: number) => void;
-  rightAnswers: () => void;
-  setRigthAnswers: (prevValue: number) => void;
+  rightAnswers: number;
+  setRigthAnswers: () => void;
 }
