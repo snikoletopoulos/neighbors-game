@@ -21,8 +21,8 @@ const App = () => {
     round: 1,
     score: 0,
     mainCountry: {
-      name: "Loading",
-      alpha2Code: "",
+      name: { official: "Loading", common: "Loading" },
+      cca2: "",
       borders: [],
     },
     hasGameEnded: false,
