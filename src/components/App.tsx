@@ -11,12 +11,12 @@ import {
 } from "../logic";
 import type ICountry from "./types/country.interface";
 
-let mainCountryHistory = [];
-let noBorderCountries = [];
+let mainCountryHistory: ICountry[] = [];
+let noBorderCountries: ICountry[] = [];
 
 const App = () => {
   const [progress, setProgress] = useState(0);
-  const [countryCards, setCountryCards] = useState([]);
+  const [countryCards, setCountryCards] = useState<ICountry[]>([]);
   const [gameState, setGameState] = useState<IGameState>({
     round: 1,
     score: 0,

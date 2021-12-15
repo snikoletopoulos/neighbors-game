@@ -10,7 +10,7 @@ export const fetchCountries = async () => {
   return countries.filter((country: ICountry) => Array.isArray(country.borders) ? country.borders.length > 0 : false);
 }
 
-export const pickRandomCountryWithBorders = (noBorderCountries: ICountry[], history): ICountry => {
+export const pickRandomCountryWithBorders = (noBorderCountries: ICountry[], history: Array<any>): ICountry => {
   const mainCountry = shuffleArray<ICountry>(noBorderCountries)[0];
   if (!history.includes(mainCountry)) {
     history.push(mainCountry);
