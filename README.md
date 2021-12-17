@@ -23,11 +23,10 @@ A game for an online class it took. It begun us a vanilla javascript project, bu
 
 #### Technologies
 
-- React.js
 - Axios
 - HTML5
 - CSS3
-- Typescript
+- JavaScript
 
 [Back To The Top](#read-me-template)
 
@@ -37,10 +36,8 @@ A game for an online class it took. It begun us a vanilla javascript project, bu
 
 #### Get started
 
-Run
+Run the HTML
 
-```bash
-npm run build && npm run preview
 ```
 
 #### How to play
