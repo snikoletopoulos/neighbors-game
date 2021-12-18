@@ -42,7 +42,7 @@ const Card = (props: Props) => {
   return (
     <article className={cardState} onClick={handleCardClick}>
       <div>{getEmojiForCountry(props.country.cca2)}</div>
-      <p>{props.country.name}</p>
+      <p>{props.country.name.common}</p>
     </article>
   );
 };
