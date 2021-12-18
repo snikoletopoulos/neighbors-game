@@ -13,6 +13,7 @@ import type ICountry from "./types/country.interface";
 
 let mainCountryHistory: ICountry[] = [];
 let noBorderCountries: ICountry[] = [];
+let countries: ICountry[] = [];
 
 const App = () => {
   const [progress, setProgress] = useState(0);
@@ -47,12 +48,11 @@ const App = () => {
 
   // Updating the cards when the title changes
   useEffect(() => {
-    setCountryCards(cardPick(gameState.mainCountry as ICountry));
+    setCountryCards(cardPick(gameState.mainCountry as ICountry, countries));
   }, [gameState.mainCountry]);
 
   // Reseting the game
   const gameReset = () => {
-    //eslint-disable-next-line
     if (!confirm("Σίγουρα; Θα χάσετε όλο σας το σκορ!")) return;
     setProgress(0);
     setGameState(prevValue => ({

@@ -23,7 +23,7 @@ export const pickRandomCountryWithBorders = (noBorderCountries: ICountry[], hist
   }
 }
 
-export const cardPick = (mainCountry: ICountry): ICountry[] => {
+export const cardPick = (mainCountry: ICountry, countries: ICountry[]): ICountry[] => {
   const neighbours = [
     ...countries.filter(country => mainCountry.borders.includes(country.cca3)),
   ];
