@@ -6,7 +6,10 @@ export const fetchCountries = async () => {
   if (response.status !== 200) {
     throw new Error(response.status.toString());
   }
-  const countries = response.data;
+  return response.data;
+}
+
+export const filterCountries = (countries: ICountry[]): ICountry[] => {
   return countries.filter((country: ICountry) => Array.isArray(country.borders) ? country.borders.length > 0 : false);
 }
 
