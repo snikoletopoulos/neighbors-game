@@ -8,6 +8,7 @@ import {
   fetchCountries,
   pickRandomCountryWithBorders,
   cardPick,
+  filterCountries
 } from "../logic";
 import type ICountry from "./types/country.interface";
 
@@ -33,7 +34,8 @@ const App = () => {
   //Fetching all the countries data
   useEffect(() => {
     (async () => {
-      noBorderCountries = await fetchCountries();
+      countries = await fetchCountries();
+      noBorderCountries = filterCountries(countries);
       setGameState(
         (prevValue: IGameState): IGameState => ({
           ...prevValue,
