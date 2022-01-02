@@ -112,7 +112,7 @@ const App = () => {
               <Card
                 key={index}
                 country={card}
-                borders={gameState.mainCountry.borders as string[] ?? []}
+                borders={gameState.mainCountry.borders ?? []}
                 progress={setProgress}
                 rightAnswers={gameState.rightAnswers}
                 setRigthAnswers={handleRightAnswer}
@@ -141,5 +141,5 @@ export interface ILoadingCountry {
     common: string;
   };
   cca2: string;
-  borders: ICountry[];
+  borders: string[];
 }
