@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
-import Sidebar from "./Sidebar";
-import Title from "./Title";
-import ProgressBar from "./ProgressBar";
-import CardArea from "./Neighbors/CardArea";
-import Card from "./Neighbors/Card";
+import Sidebar from "./components/Sidebar";
+import Title from "./components/Title";
+import ProgressBar from "./components/ProgressBar";
+import CardArea from "./components/Neighbors/CardArea";
+import Card from "./components/Neighbors/Card";
 import {
   fetchCountries,
   pickRandomCountryWithBorders,
   cardPick,
   filterCountries
-} from "../logic";
-import type ICountry from "./types/country.interface";
+} from "./logic";
+import type ICountry from "./components/types/country.interface";
 
 let mainCountryHistory: ICountry[] = [];
 let noBorderCountries: ICountry[] = [];
