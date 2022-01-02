@@ -16,10 +16,14 @@ const Sidebar = ({ round, score, gameState, reset, next }: Props) => (
         {score}
       </p>
     </div>
-    <Button active={gameState} onClick={next} id="btn-next-round">
+    <Button
+      className={styles["sidebar__btn"]}
+      active={gameState}
+      onClick={next}
+    >
       Επόμενη χώρα
     </Button>
-    <Button id="btn-new-game" onClick={reset}>
+    <Button className={styles["sidebar__btn"]} onClick={reset}>
       Νέο παιχνίδι
     </Button>
   </aside>
