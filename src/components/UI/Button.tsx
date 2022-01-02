@@ -1,12 +1,18 @@
 import { ReactNode } from "react";
 import styles from "./Button.module.scss";
 
-const Button = ({ active = true, children, onClick,  ...buttonProperties }: Props) => {
+const Button = ({
+  active = true,
+  children,
+  onClick,
+  className,
+  ...buttonProperties
+}: Props) => {
   return (
     <p
       className={`${styles["btn"]} ${
         active ? styles["btn--active"] : styles["btn--inactive"]
-      }`}
+      } ${className ?? ""}`}
       onClick={active ? onClick ?? undefined : undefined}
       id="btn-next-round"
       {...buttonProperties}
@@ -21,5 +27,6 @@ export default Button;
 interface Props {
   active?: boolean;
   children?: ReactNode;
-  [x: string]: any;
+  className?: string;
+  [buttonProperties: string]: any;
 }
