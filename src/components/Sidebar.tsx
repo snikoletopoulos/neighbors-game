@@ -28,9 +28,9 @@ const Sidebar = ({ round, score, gameState, reset, next }: Props) => (
 export default Sidebar;
 
 interface Props {
-	round: number;
-	score: number;
-	gameState: boolean;
-	reset: () => void;
-	next: () => void;
+  round: number;
+  score: number;
+  gameState: boolean;
+  reset: () => void;
+  next: () => void;
 }
