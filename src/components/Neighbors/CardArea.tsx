@@ -1,5 +1,7 @@
+import styles from './CardArea.module.scss';
+
 const CardArea = (props: Props) => (
-  <section id="neighbours-panel">{props.children}</section>
+  <section className={styles['neighbours']}>{props.children}</section>
 );
 
 export default CardArea;

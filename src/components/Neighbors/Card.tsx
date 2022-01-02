@@ -1,4 +1,6 @@
 import { useState } from "react";
+import styles from './Card.module.scss';
+
 import { getEmojiForCountry } from "../../logic.js";
 import type ICountry from "../types/country.interface.js";
 
@@ -40,9 +42,9 @@ const Card = (props: Props) => {
   };
 
   return (
-    <article className={cardState} onClick={handleCardClick}>
-      <div>{getEmojiForCountry(props.country.cca2)}</div>
-      <p>{props.country.name.common}</p>
+    <article className={`${styles['card']} ${cardState}`} onClick={handleCardClick}>
+      <div className={styles['card__icon']}>{getEmojiForCountry(props.country.cca2)}</div>
+      <p className={styles['card__text']}>{props.country.name.common}</p>
     </article>
   );
 };

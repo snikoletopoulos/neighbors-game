@@ -1,0 +1,36 @@
+@import "/src/styles/variables";
+
+.neighbours {
+  /* background-color: gray; */
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 5px;
+  position: relative;
+
+  &::before {
+    background-color: rgba(112, 112, 112, 0.75);
+    color: black;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2em;
+    font-weight: bold;
+    content: attr(data-game-state);
+    visibility: hidden;
+    border-radius: $box-radius;
+  }
+
+  &[data-game-state="Τους βρήκατε όλους!"]::before {
+    visibility: visible;
+  }
+
+  &[data-game-state="Κρίμα, χάσατε!"]::before {
+    color: rgb(122, 4, 4);
+    visibility: visible;
+  }
+}
