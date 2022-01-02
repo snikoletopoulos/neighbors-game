@@ -1,15 +1,19 @@
 import { useState, useEffect } from "react";
+import "./global.scss";
+
 import Sidebar from "./components/Sidebar";
 import Title from "./components/Title";
 import ProgressBar from "./components/ProgressBar";
 import CardArea from "./components/Neighbors/CardArea";
 import Card from "./components/Neighbors/Card";
+
 import {
   fetchCountries,
   pickRandomCountryWithBorders,
   cardPick,
   filterCountries
 } from "./logic";
+
 import type ICountry from "./components/types/country.interface";
 
 let mainCountryHistory: ICountry[] = [];

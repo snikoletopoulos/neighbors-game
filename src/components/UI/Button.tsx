@@ -14,7 +14,6 @@ const Button = ({
         active ? styles["btn--active"] : styles["btn--inactive"]
       } ${className ?? ""}`}
       onClick={active ? onClick ?? undefined : undefined}
-      id="btn-next-round"
       {...buttonProperties}
     >
       {children}
