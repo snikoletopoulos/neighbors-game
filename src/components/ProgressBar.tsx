@@ -11,7 +11,6 @@ const ProgressBar = () => {
   useEffect(() => {
     const progress =
       (100 * gameState.roundInfo.rightAnswers) / totalCorrectAnswers;
-    // console.log(progress);
     setProgress(progress);
   }, [gameState.mainCountry, gameState.roundInfo.rightAnswers]);
 
