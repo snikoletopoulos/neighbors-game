@@ -85,7 +85,11 @@ export const GameInfoProvider = (props: Props) => {
   useEffect(() => {
     (async () => {
       countries.current = await fetchCountries();
-      setMainCountry(countries.current.find(country => country.name.common === 'Vietnam') as IMainCountry);//pickMainCountry(countries.current, history.current));
+      setMainCountry(
+        countries.current.find(
+          country => country.name.common === "Vietnam"
+        ) as IMainCountry
+      ); //pickMainCountry(countries.current, history.current));
     })();
   }, []);
 
@@ -111,7 +115,9 @@ export const GameInfoProvider = (props: Props) => {
 
   const incorrectAnswer = useCallback(() => {
     dispatch({ type: roundActions.INCORRECT_ANSWER });
-  };
+
+  }, []);
+  }, []);
 
   return (
     <GameInfoContext.Provider

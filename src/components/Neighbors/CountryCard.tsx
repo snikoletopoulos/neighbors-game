@@ -16,18 +16,17 @@ const CountryCard = (props: Props) => {
   const gameInfo = useContext(GameInfoContext);
 
   const cardStateReducer = useCallback(
-    switch (action.type) {
-      case cardStateOptions.correct:
-        gameInfo.correctAnswer();
-        return styles[cardStateOptions.correct];
-      case cardStateOptions.incorrect:
-        gameInfo.incorrectAnswer();
-        return styles[cardStateOptions.incorrect];
-      case cardStateOptions.notFound:
-        return styles[cardStateOptions.notFound];
-      default:
-        return null;
-    }
+    (_: string | null, action: { type: string }) => {
+      switch (action.type) {
+        case cardStateOptions.correct:
+          return styles[cardStateOptions.correct];
+        case cardStateOptions.incorrect:
+          return styles[cardStateOptions.incorrect];
+        case cardStateOptions.notFound:
+          return styles[cardStateOptions.notFound];
+        default:
+          return null;
+      }
     },
     []
   );
