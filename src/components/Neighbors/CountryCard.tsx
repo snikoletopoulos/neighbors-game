@@ -48,11 +48,13 @@ const CountryCard = (props: Props) => {
   );
 
   const handleCardClick = () => {
-    dispatch({
-      type: isCardCorrect()
-        ? cardStateOptions.correct
-        : cardStateOptions.incorrect,
-    });
+    if (isCardCorrect()) {
+      gameInfo.correctAnswer();
+      dispatch({ type: cardStateOptions.correct });
+    } else {
+      gameInfo.incorrectAnswer();
+      dispatch({ type: cardStateOptions.incorrect });
+    }
     // update progress
   };
 
