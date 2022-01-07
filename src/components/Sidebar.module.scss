@@ -9,6 +9,7 @@
   color: white;
   display: flex;
   flex-direction: column;
+  align-items: center;
 
   & > * {
     width: 85%;
@@ -23,6 +24,14 @@
 
   &__info-container__value {
     margin-left: auto;
+  }
+
+  &__btn { //? Better selector
+    margin-top: auto !important;
+
+    &:last-child {
+      margin-top: 0 !important;
+    }
   }
 
   @media only screen and (max-width: 800px) {
