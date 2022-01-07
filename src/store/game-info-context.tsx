@@ -9,10 +9,11 @@ const defaultValeus: IGameInfoContext = {
   roundInfo: {
     round: 1,
     score: 0,
-    hasGameEnded: false,
     rightAnswers: 0,
+    wrongAnswers: 0,
   },
   mainCountry: null,
+  hasGameEnded: false,
   resetGame: () => {},
   nextRound: () => {},
   correctAnswer: () => {},
@@ -38,7 +39,6 @@ const roundInfoReducer = (
         ...state,
         round: state.round + 1,
         rightAnswers: 0,
-        hasGameEnded: false,
       };
     case roundActions.RESET_ROUND:
       return {
@@ -46,7 +46,6 @@ const roundInfoReducer = (
         round: 1,
         score: 0,
         rightAnswers: 0,
-        hasGameEnded: false,
       };
     case roundActions.CORRECT_ANSWER:
       return {
@@ -70,9 +69,10 @@ export const GameInfoProvider = (props: Props) => {
     defaultValeus.roundInfo
   );
 
-  const [mainCountry, setMainCountry] = useState<IMainCountry | null>(null);
   const countries = useRef<ICountry[]>([]);
   const history = useRef<string[]>([]);
+  const [mainCountry, setMainCountry] = useState<IMainCountry | null>(null);
+  const [hasGameEnded, setHasGameEnded] = useState(false);
 
   //Fetching all the countries data
   useEffect(() => {
@@ -110,6 +110,7 @@ export const GameInfoProvider = (props: Props) => {
         roundInfo,
         countries: countries.current,
         mainCountry,
+        hasGameEnded,
         resetGame,
         nextRound,
         correctAnswer,
@@ -131,6 +132,7 @@ interface IGameInfoContext {
   countries: ICountry[] | null;
   roundInfo: IRoundInfo;
   mainCountry: IMainCountry | null;
+  hasGameEnded: boolean;
   resetGame(): void;
   nextRound(): void;
   correctAnswer(): void;
@@ -141,7 +143,7 @@ interface IRoundInfo {
   round: number;
   score: number;
   rightAnswers: number;
-  hasGameEnded: boolean;
+  wrongAnswers: number;
 }
 
 export interface IMainCountry extends ICountry {

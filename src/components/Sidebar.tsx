@@ -26,7 +26,7 @@ const Sidebar = () => {
       </div>
       <Button
         className={styles["sidebar__btn"]}
-        active={roundInfo.hasGameEnded}
+        active={gameInfo.hasGameEnded}
         onClick={nextRound}
       >
         Επόμενη χώρα
