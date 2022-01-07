@@ -1,5 +1,6 @@
 import axios from "axios";
-import type ICountry from "./components/types/country.interface";
+import type ICountry from "./types/country.interface";
+import { IMainCountry } from "./store/game-info-context";
 
 export const fetchCountries = async () => {
   const response = await axios.get<ICountry[]>(
@@ -18,37 +19,54 @@ export const filterCountries = (countries: ICountry[]): ICountry[] =>
     Array.isArray(country.borders) ? country.borders.length > 0 : false
   );
 
-export const pickRandomCountryWithBorders = (noBorderCountries: ICountry[], history: Array<any>): ICountry => {
-  const mainCountry = shuffleArray<ICountry>(noBorderCountries)[0];
-  if (!history.includes(mainCountry)) {
-    history.push(mainCountry);
-    return mainCountry;
-  } else {
-    return pickRandomCountryWithBorders(noBorderCountries, history);
-  }
-}
+export const pickMainCountry = (
+  countries: ICountry[],
+  history: string[]
+): IMainCountry => {
+  const mainCountry = shuffleArray<ICountry>(countries)[0];
 
-export const cardPick = (mainCountry: ICountry, countries: ICountry[]): ICountry[] => {
-  const neighbours = [
-    ...countries.filter(country => mainCountry.borders?.includes(country.cca3)),
+  if (Array.isArray(mainCountry.borders) && mainCountry.borders.length > 0) {
+    const isInHistory = history.includes(mainCountry.name.common);
+    if (!isInHistory) {
+      history.push(mainCountry.name.common);
+
+      return mainCountry as IMainCountry;
+    }
+  }
+
+  return pickMainCountry(countries, history);
+};
+
+export const cardPick = (
+  mainCountry: IMainCountry,
+  countries: ICountry[]
+): ICountry[] => {
+  const selectedCountries = [
+    ...countries.filter(country => mainCountry.borders.includes(country.cca3)),
   ];
   const shuffledCountries = shuffleArray<ICountry>(countries);
-  for (let i = 0; neighbours.length < mainCountry.borders?.length * 3; i++) {
+
+  for (
+    let i = 0;
+    selectedCountries.length < mainCountry.borders!.length * 3;
+    i++
+  ) {
     if (
       !mainCountry.borders?.includes(shuffledCountries[i].cca3) &&
       !(shuffledCountries[i] === mainCountry)
     )
-      neighbours.push(shuffledCountries[i]);
+      selectedCountries.push(shuffledCountries[i]);
   }
-  return shuffleArray(neighbours);
-}
 
-const shuffleArray = <T>(array: Array<T>): Array<T> => {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * i);
-    const temp = array[i];
-    array[i] = array[j];
-    array[j] = temp;
+  return shuffleArray(selectedCountries);
+};
+
+const shuffleArray = <T>(array: T[]): T[] => {
+  for (let length = array.length - 1; length > 0; length--) {
+    const elementToBeSwaped = Math.floor(Math.random() * length);
+    const temp = array[length];
+    array[length] = array[elementToBeSwaped];
+    array[elementToBeSwaped] = temp;
   }
   return array;
 };
