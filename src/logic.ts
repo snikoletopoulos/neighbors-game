@@ -2,16 +2,21 @@ import axios from "axios";
 import type ICountry from "./components/types/country.interface";
 
 export const fetchCountries = async () => {
-  const response = await axios.get("https://restcountries.com/v3.1/all");
+  const response = await axios.get<ICountry[]>(
+    "https://restcountries.com/v3.1/all"
+  );
+
   if (response.status !== 200) {
     throw new Error(response.status.toString());
   }
-  return response.data;
-}
 
-export const filterCountries = (countries: ICountry[]): ICountry[] => {
-  return countries.filter((country: ICountry) => Array.isArray(country.borders) ? country.borders.length > 0 : false);
-}
+  return response.data;
+};
+
+export const filterCountries = (countries: ICountry[]): ICountry[] =>
+  countries.filter((country: ICountry) =>
+    Array.isArray(country.borders) ? country.borders.length > 0 : false
+  );
 
 export const pickRandomCountryWithBorders = (noBorderCountries: ICountry[], history: Array<any>): ICountry => {
   const mainCountry = shuffleArray<ICountry>(noBorderCountries)[0];
