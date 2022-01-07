@@ -37,10 +37,10 @@ const CountryCard = (props: Props) => {
     if (cardState === cardStateOptions.correct) return;
 
     // validate card
-    if (gameInfo.roundInfo.hasGameEnded && isCardCorrect()) {
+    if (gameInfo.hasGameEnded && isCardCorrect()) {
       dispatch({ type: cardStateOptions.notFound });
     }
-  }, [gameInfo.roundInfo.hasGameEnded]);
+  }, [gameInfo.hasGameEnded]);
 
   const isCardCorrect = useCallback(
     () => gameInfo.mainCountry?.borders.includes(props.country.cca3),
