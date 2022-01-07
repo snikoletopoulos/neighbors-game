@@ -2,7 +2,7 @@
 
 .sidebar {
   grid-area: side;
-  background-color: #f47b20;
+  background-color: $primary-color;
   border-radius: $box-radius;
   min-width: 170px;
   height: 100%;
