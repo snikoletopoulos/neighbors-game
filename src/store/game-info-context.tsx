@@ -1,4 +1,11 @@
-import { createContext, useState, useEffect, useReducer, useRef } from "react";
+import {
+  createContext,
+  useState,
+  useEffect,
+  useReducer,
+  useRef,
+  useCallback,
+} from "react";
 
 import { pickMainCountry, fetchCountries } from "../logic";
 
@@ -83,24 +90,26 @@ export const GameInfoProvider = (props: Props) => {
   }, []);
 
   // Reseting the game
-  const resetGame = () => {
+  const resetGame = useCallback(() => {
     if (!confirm("Σίγουρα; Θα χάσετε όλο σας το σκορ!")) return;
 
     dispatch({ type: roundActions.RESET_ROUND });
     setMainCountry(pickMainCountry(countries.current, history.current));
-  };
+    setHasGameEnded(false);
+  }, [countries.current, history.current]);
 
   // Going to the next round
-  const nextRound = () => {
+  const nextRound = useCallback(() => {
     dispatch({ type: roundActions.NEXT_ROUND });
     setMainCountry(pickMainCountry(countries.current, history.current));
-  };
+  }, [countries.current, history.current]);
 
-  const correctAnswer = () => {
+  const correctAnswer = useCallback(() => {
     dispatch({ type: roundActions.CORRECT_ANSWER });
-  };
 
-  const incorrectAnswer = () => {
+  }, []);
+
+  const incorrectAnswer = useCallback(() => {
     dispatch({ type: roundActions.INCORRECT_ANSWER });
   };
 

@@ -1,4 +1,4 @@
-import { useReducer, useEffect, useContext } from "react";
+import { useReducer, useEffect, useContext, useCallback } from "react";
 import styles from "./CountryCard.module.scss";
 import GameInfoContext from "../../store/game-info-context";
 
@@ -15,7 +15,7 @@ const cardStateOptions = {
 const CountryCard = (props: Props) => {
   const gameInfo = useContext(GameInfoContext);
 
-  const cardStateReducer = (_: string | null, action: { type: string }) => {
+  const cardStateReducer = useCallback(
     switch (action.type) {
       case cardStateOptions.correct:
         gameInfo.correctAnswer();
@@ -28,7 +28,9 @@ const CountryCard = (props: Props) => {
       default:
         return null;
     }
-  };
+    },
+    []
+  );
 
   const [cardState, dispatch] = useReducer(cardStateReducer, null);
 
@@ -41,8 +43,10 @@ const CountryCard = (props: Props) => {
     }
   }, [gameInfo.roundInfo.hasGameEnded]);
 
-  const isCardCorrect = () =>
-    gameInfo.mainCountry?.borders.includes(props.country.cca3);
+  const isCardCorrect = useCallback(
+    () => gameInfo.mainCountry?.borders.includes(props.country.cca3),
+    [gameInfo.mainCountry, props.country]
+  );
 
   const handleCardClick = () => {
     dispatch({
