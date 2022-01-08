@@ -12,15 +12,17 @@ import { cardPick } from "./logic";
 import ICountry from "./types/country.interface.js";
 
 const App = () => {
-  const gameState = useContext(GameInfoContext);
+  const gameInfo = useContext(GameInfoContext);
   const [countryCards, setCountryCards] = useState<ICountry[]>([]);
 
   // Updating the cards when the title changes
   useEffect(() => {
-    if (gameState.mainCountry && gameState.countries) {
-      setCountryCards(cardPick(gameState.mainCountry, gameState.countries));
+    if (gameInfo.mainCountry && gameInfo.countries) {
+      setCountryCards(cardPick(gameInfo.mainCountry, gameInfo.countries));
     }
-  }, [gameState.mainCountry, gameState.countries]);
+  }, [gameInfo.mainCountry, gameInfo.countries]);
+
+  const modalMessage = `You scored ${gameInfo.roundInfo.score} points!`;
 
   return (
     <div className="game-panel">

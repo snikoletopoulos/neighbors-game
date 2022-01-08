@@ -3,16 +3,16 @@ import styles from "./ProgressBar.module.scss";
 import GameInfoContext from "../store/game-info-context";
 
 const ProgressBar = () => {
-  const gameState = useContext(GameInfoContext);
+  const gameInfo = useContext(GameInfoContext);
   const [progress, setProgress] = useState(0);
 
-  const totalCorrectAnswers = gameState.mainCountry?.borders?.length ?? 0;
+  const totalCorrectAnswers = gameInfo.mainCountry?.borders?.length ?? 0;
 
   useEffect(() => {
     const progress =
-      (100 * gameState.roundInfo.rightAnswers) / totalCorrectAnswers;
+      (100 * gameInfo.roundInfo.rightAnswers) / totalCorrectAnswers;
     setProgress(progress);
-  }, [gameState.mainCountry, gameState.roundInfo.rightAnswers]);
+  }, [gameInfo.mainCountry, gameInfo.roundInfo.rightAnswers]);
 
   return (
     <section id="progress" className={styles["progress-bar"]}>
