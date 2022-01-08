@@ -21,6 +21,7 @@ const defaultValeus: IGameInfoContext = {
   },
   mainCountry: null,
   hasGameEnded: false,
+  hasWon: false,
   resetGame: () => {},
   nextRound: () => {},
   correctAnswer: () => {},
@@ -80,6 +81,7 @@ export const GameInfoProvider = (props: Props) => {
   const history = useRef<string[]>([]);
   const [mainCountry, setMainCountry] = useState<IMainCountry | null>(null);
   const [hasGameEnded, setHasGameEnded] = useState(false);
+  const [hasWon, setHasWon] = useState(false);
 
   //Fetching all the countries data
   useEffect(() => {
@@ -126,6 +128,7 @@ export const GameInfoProvider = (props: Props) => {
         countries: countries.current,
         mainCountry,
         hasGameEnded,
+        hasWon,
         resetGame,
         nextRound,
         correctAnswer,
@@ -148,6 +151,7 @@ interface IGameInfoContext {
   roundInfo: IRoundInfo;
   mainCountry: IMainCountry | null;
   hasGameEnded: boolean;
+  hasWon: boolean;
   resetGame(): void;
   nextRound(): void;
   correctAnswer(): void;
