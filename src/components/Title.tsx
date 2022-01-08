@@ -10,7 +10,7 @@ const Title = () => {
   return (
     <section className={styles["selected-country"]}>
       <span className={styles["selected-country__flag"]}>
-        {getEmojiForCountry(mainCountry?.cca2 ?? "")}
+        {mainCountry?.cca2 && getEmojiForCountry(mainCountry?.cca2)}
       </span>
       <h1 className={styles["selected-country__name"]}>
         {mainCountry?.name.common ?? "Loading..."}
