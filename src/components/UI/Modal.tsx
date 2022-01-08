@@ -1,33 +1,49 @@
+import { createPortal } from "react-dom";
+
 import styles from "./Modal.module.scss";
 import Card from "./Card";
-import Button from "./Button";
 
 const Backdrop = () => {
   return <div className={styles["modal__backdrop"]}></div>;
 };
 
 const Modal = (props: Props) => {
-  return (
+  const modal = (
     <>
       <Backdrop />
       <Card className={`${styles["modal"]}`}>
-        <header className={styles["modal__header"]}>Game over</header>
+        {props.header && (
+          <header className={styles["modal__header"]}>{props.header}</header>
+        )}
 
-        <main className={styles["modal__body"]}>Mpla mpla</main>
+        <main className={styles["modal__body"]}>
+          {props.body ?? props.children}
+        </main>
 
-        <footer className={styles["modal__actions"]}>
-          <Button className={styles["modal__btn"]}>Action 1</Button>
-          <Button
-            className={`${styles["modal__btn"]} ${styles["modal__btn--primary"]}`}
-          >
-            Action 2
-          </Button>
-        </footer>
+        {props.actions && (
+          <footer className={styles["modal__actions"]}>
+            {props.actions}
+          </footer>
+        )}
       </Card>
     </>
   );
+
+  if (props.teleport) {
+    return createPortal(
+      modal,
+      document.querySelector<HTMLDivElement>("#overlays")!
+    );
+  }
+  return modal;
 };
 
 export default Modal;
 
-interface Props {}
+interface Props {
+  teleport?: boolean;
+  children?: React.ReactNode;
+  header?: string;
+  body?: React.ReactNode | string;
+  actions?: React.ReactNode;
+}
