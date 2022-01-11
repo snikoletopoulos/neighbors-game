@@ -22,7 +22,9 @@ const App = () => {
     }
   }, [gameInfo.mainCountry, gameInfo.countries]);
 
-  const modalMessage = `You scored ${gameInfo.roundInfo.score} points!`;
+  const modalMessage = gameInfo.hasWon
+    ? "Κέρδισες! Συγχαριτήρια"
+    : "Έχασες! Ξαναπροσπάθησε!";
 
   return (
     <div className="game-panel">
@@ -30,7 +32,7 @@ const App = () => {
       <main>
         <Title /> {/*TODO? have props so it renders for memo */}
         <ProgressBar />
-        <CardArea>
+        <CardArea showModal={gameInfo.hasGameEnded} message={modalMessage}>
           {countryCards.map(country => (
             <CountryCard key={country.cca3} country={country} />
           ))}
