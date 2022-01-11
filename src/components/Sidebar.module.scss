@@ -1,0 +1,40 @@
+@import "/src/styles/variables";
+
+.sidebar {
+  grid-area: side;
+  background-color: $primary-color;
+  border-radius: $box-radius;
+  min-width: 170px;
+  height: 100%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  & > * {
+    width: 85%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &__info-container {
+    display: grid;
+    grid-template-areas: "lebel value" "lebel value";
+  }
+
+  &__info-container__value {
+    margin-left: auto;
+  }
+
+  &__btn { //? Better selector
+    margin-top: auto !important;
+
+    &:last-child {
+      margin-top: 0 !important;
+    }
+  }
+
+  @media only screen and (max-width: 800px) {
+    margin-bottom: 5px;
+  }
+}
