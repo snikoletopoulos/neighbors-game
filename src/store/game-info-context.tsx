@@ -112,13 +112,10 @@ export const GameInfoProvider = (props: Props) => {
 
   const correctAnswer = useCallback(() => {
     dispatch({ type: roundActions.CORRECT_ANSWER });
-
   }, []);
 
   const incorrectAnswer = useCallback(() => {
     dispatch({ type: roundActions.INCORRECT_ANSWER });
-
-  }, []);
   }, []);
 
   return (

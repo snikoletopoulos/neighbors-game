@@ -37,7 +37,6 @@ const CountryCard = (props: Props) => {
       gameInfo.incorrectAnswer();
       setCardState(cardStateOptions.incorrect );
     }
-    // update progress
   };
 
   return (

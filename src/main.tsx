@@ -15,6 +15,3 @@ ReactDOM.render(
   </StrictMode>,
   document.getElementById("root")
 );
-
-//TODO Reset function
-//TODO Ending of game
