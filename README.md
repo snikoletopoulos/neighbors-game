@@ -9,8 +9,8 @@
   - [Description](#description)
       - [Technologies](#technologies)
   - [How To Use](#how-to-use)
-      - [Get started](#get-started)
-      - [How to play](#how-to-play)
+    - [Get started](#get-started)
+    - [How to play](#how-to-play)
   - [References](#references)
   - [License](#license)
   - [Author Info](#author-info)
@@ -26,8 +26,9 @@ A game for an online class it took. It begun us a vanilla javascript project, bu
 - React.js
 - Axios
 - HTML5
-- CSS3
+- Sass
 - Typescript
+- Vite
 
 [Back To The Top](#read-me-template)
 
@@ -35,7 +36,7 @@ A game for an online class it took. It begun us a vanilla javascript project, bu
 
 ## How To Use
 
-#### Get started
+### Get started
 
 Run
 
@@ -43,7 +44,13 @@ Run
 npm run build && npm run preview
 ```
 
-#### How to play
+Development
+
+```bash
+npm run dev
+```
+
+### How to play
 
 Start the game. There is a country at the top of the page. Now, you need to find all the countries that are at the borders of this country.
 
