@@ -1,4 +1,4 @@
-import { useReducer, useEffect, useContext, useCallback } from "react";
+import { useState, useEffect, useContext, useCallback } from "react";
 import styles from "./CountryCard.module.scss";
 import GameInfoContext from "../../store/game-info-context";
 
@@ -14,31 +14,14 @@ const cardStateOptions = {
 
 const CountryCard = (props: Props) => {
   const gameInfo = useContext(GameInfoContext);
-
-  const cardStateReducer = useCallback(
-    (_: string | null, action: { type: string }) => {
-      switch (action.type) {
-        case cardStateOptions.correct:
-          return styles[cardStateOptions.correct];
-        case cardStateOptions.incorrect:
-          return styles[cardStateOptions.incorrect];
-        case cardStateOptions.notFound:
-          return styles[cardStateOptions.notFound];
-        default:
-          return null;
-      }
-    },
-    []
-  );
-
-  const [cardState, dispatch] = useReducer(cardStateReducer, null);
+  const [cardState, setCardState] = useState<string | null>(null);
 
   useEffect(() => {
     if (cardState === cardStateOptions.correct) return;
 
     // validate card
     if (gameInfo.hasGameEnded && isCardCorrect()) {
-      dispatch({ type: cardStateOptions.notFound });
+      setCardState(cardStateOptions.notFound);
     }
   }, [gameInfo.hasGameEnded]);
 
@@ -50,17 +33,17 @@ const CountryCard = (props: Props) => {
   const handleCardClick = () => {
     if (isCardCorrect()) {
       gameInfo.correctAnswer();
-      dispatch({ type: cardStateOptions.correct });
+      setCardState(cardStateOptions.correct);
     } else {
       gameInfo.incorrectAnswer();
-      dispatch({ type: cardStateOptions.incorrect });
+      setCardState(cardStateOptions.incorrect );
     }
     // update progress
   };
 
   return (
     <Card
-      className={`${styles["country-card"]} ${cardState}`}
+      className={`${styles["country-card"]} ${cardState ? styles[cardState] : null}`}
       onClick={!cardState ? handleCardClick : null}
     >
       <div className={styles["country-card__icon"]}>
