@@ -47,6 +47,7 @@ const roundInfoReducer = (
         ...state,
         round: state.round + 1,
         rightAnswers: 0,
+        wrongAnswers: 0,
       };
     case roundActions.RESET_ROUND:
       return {
@@ -54,6 +55,7 @@ const roundInfoReducer = (
         round: 1,
         score: 0,
         rightAnswers: 0,
+        wrongAnswers: 0,
       };
     case roundActions.CORRECT_ANSWER:
       return {
@@ -64,6 +66,7 @@ const roundInfoReducer = (
     case roundActions.INCORRECT_ANSWER:
       return {
         ...state,
+        wrongAnswers: state.wrongAnswers + 1,
         score: state.score - 3,
       };
     default:
