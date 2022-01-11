@@ -105,12 +105,15 @@ export const GameInfoProvider = (props: Props) => {
     dispatch({ type: roundActions.RESET_ROUND });
     setMainCountry(pickMainCountry(countries.current, history.current));
     setHasGameEnded(false);
+    setHasWon(false);
   }, [countries.current, history.current]);
 
   // Going to the next round
   const nextRound = useCallback(() => {
     dispatch({ type: roundActions.NEXT_ROUND });
     setMainCountry(pickMainCountry(countries.current, history.current));
+    setHasGameEnded(false);
+    setHasWon(false);
   }, [countries.current, history.current]);
 
   const correctAnswer = useCallback(() => {
