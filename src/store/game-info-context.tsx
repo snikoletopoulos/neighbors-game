@@ -61,7 +61,7 @@ const roundInfoReducer = (
       return {
         ...state,
         rightAnswers: state.rightAnswers + 1,
-        score: state.score + 3,
+        score: state.score + 5,
       };
     case roundActions.INCORRECT_ANSWER:
       return {
