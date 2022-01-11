@@ -98,6 +98,22 @@ export const GameInfoProvider = (props: Props) => {
     })();
   }, []);
 
+  useEffect(() => {
+    if (!mainCountry) return;
+
+    const hasWon =
+      roundInfo.rightAnswers === mainCountry.borders.length;
+    const hasLost =
+      roundInfo.wrongAnswers === mainCountry.borders.length;
+
+    if (!hasWon && !hasLost) return;
+
+    if (hasWon) {
+      setHasWon(true);
+    }
+    setHasGameEnded(true);
+  }, [roundInfo.rightAnswers, roundInfo.wrongAnswers]);
+
   // Reseting the game
   const resetGame = useCallback(() => {
     if (!confirm("Σίγουρα; Θα χάσετε όλο σας το σκορ!")) return;
