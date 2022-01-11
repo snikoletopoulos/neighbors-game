@@ -19,19 +19,18 @@ const CountryCard = (props: Props) => {
   useEffect(() => {
     if (cardState === cardStateOptions.correct) return;
 
-    // validate card
-    if (gameInfo.hasGameEnded && isCardCorrect()) {
+    // Validate card
+    if (gameInfo.hasGameEnded && isCardCorrect) {
       setCardState(cardStateOptions.notFound);
     }
   }, [gameInfo.hasGameEnded]);
 
-  const isCardCorrect = useCallback(
-    () => gameInfo.mainCountry?.borders.includes(props.country.cca3),
-    [gameInfo.mainCountry, props.country]
+  const isCardCorrect = gameInfo.mainCountry?.borders.includes(
+    props.country.cca3
   );
 
   const handleCardClick = () => {
-    if (isCardCorrect()) {
+    if (isCardCorrect) {
       gameInfo.correctAnswer();
       setCardState(cardStateOptions.correct);
     } else {
