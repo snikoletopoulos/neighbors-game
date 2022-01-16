@@ -7,7 +7,7 @@ const Backdrop = () => {
   return <div className={styles["modal__backdrop"]}></div>;
 };
 
-const Modal = (props: Props) => {
+const Modal: React.FC<Props> = props => {
   const modal = (
     <>
       <Backdrop />
@@ -21,9 +21,7 @@ const Modal = (props: Props) => {
         </main>
 
         {props.actions && (
-          <footer className={styles["modal__actions"]}>
-            {props.actions}
-          </footer>
+          <footer className={styles["modal__actions"]}>{props.actions}</footer>
         )}
       </Card>
     </>
@@ -42,7 +40,6 @@ export default Modal;
 
 interface Props {
   teleport?: boolean;
-  children?: React.ReactNode;
   header?: string;
   body?: React.ReactNode | string;
   actions?: React.ReactNode;
