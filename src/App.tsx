@@ -34,7 +34,10 @@ const App = () => {
         <ProgressBar />
         <CardArea showModal={gameInfo.hasGameEnded} message={modalMessage}>
           {countryCards.map(country => (
-            <CountryCard key={country.cca3} country={country} />
+            <CountryCard
+              key={`${gameInfo.roundInfo.round}-${country.cca3}`}
+              country={country}
+            />
           ))}
         </CardArea>
       </main>
