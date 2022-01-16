@@ -7,9 +7,10 @@ import {
   useCallback,
 } from "react";
 
+import type ICountry from "../types/country.interface";
+
 import { pickMainCountry, fetchCountries } from "../logic";
 
-import type ICountry from "../types/country.interface";
 
 const defaultValeus: IGameInfoContext = {
   countries: [],
