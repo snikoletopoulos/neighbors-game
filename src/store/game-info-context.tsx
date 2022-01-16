@@ -11,7 +11,6 @@ import type ICountry from "../types/country.interface";
 
 import { pickMainCountry, fetchCountries } from "../logic";
 
-
 const defaultValeus: IGameInfoContext = {
   countries: [],
   roundInfo: {
@@ -102,10 +101,8 @@ export const GameInfoProvider = (props: Props) => {
   useEffect(() => {
     if (!mainCountry) return;
 
-    const hasWon =
-      roundInfo.rightAnswers === mainCountry.borders.length;
-    const hasLost =
-      roundInfo.wrongAnswers === mainCountry.borders.length;
+    const hasWon = roundInfo.rightAnswers === mainCountry.borders.length;
+    const hasLost = roundInfo.wrongAnswers === mainCountry.borders.length;
 
     if (!hasWon && !hasLost) return;
 
