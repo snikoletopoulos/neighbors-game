@@ -8,6 +8,7 @@ import {
 } from "react";
 
 import type ICountry from "../types/country.interface";
+import { useError, errorActions } from "../hooks/use-error";
 
 import { pickMainCountry, fetchCountries } from "../logic";
 
@@ -79,6 +80,8 @@ export const GameInfoProvider = (props: Props) => {
     roundInfoReducer,
     defaultValeus.roundInfo
   );
+
+  const { ErrorModal, throwError } = useError();
 
   const countries = useRef<ICountry[]>([]);
   const history = useRef<string[]>([]);
@@ -152,6 +155,7 @@ export const GameInfoProvider = (props: Props) => {
         incorrectAnswer,
       }}
     >
+      <ErrorModal />
       {props.children}
     </GameInfoContext.Provider>
   );
