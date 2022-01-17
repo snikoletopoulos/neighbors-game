@@ -34,8 +34,12 @@
     padding: 0.8em 1em;
 
     &--primary {
-      background-color: $primary-color;
-      color: white;
+      background-color: $primary-color !important;
+      color: white !important;
+
+      &:hover {
+        background-color: lighten($primary-color, 10%) !important;
+      }
     }
   }
 
