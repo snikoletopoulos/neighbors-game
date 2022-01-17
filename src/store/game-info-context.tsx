@@ -92,12 +92,13 @@ export const GameInfoProvider: React.FC<Props> = props => {
   //Fetching all the countries data
   useEffect(() => {
     (async () => {
-      countries.current = await fetchCountries();
-      setMainCountry(
-        countries.current.find(
-          country => country.name.common === "Vietnam"
-        ) as IMainCountry
-      ); //pickMainCountry(countries.current, history.current));
+      try {
+        countries.current = await fetchCountries();
+
+        setMainCountry(pickMainCountry(countries.current, history.current));
+      } catch (error) {
+        throwError({ type: errorActions.ERROR, error: error as Error });
+      }
     })();
   }, []);
 
