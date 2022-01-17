@@ -75,7 +75,7 @@ const roundInfoReducer = (
   }
 };
 
-export const GameInfoProvider = (props: Props) => {
+export const GameInfoProvider: React.FC<Props> = props => {
   const [roundInfo, dispatch] = useReducer(
     roundInfoReducer,
     defaultValeus.roundInfo
