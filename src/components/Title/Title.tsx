@@ -1,8 +1,8 @@
-import { useContext } from "react";
+import { useContext, memo } from "react";
 import styles from "./Title.module.scss";
-import GameInfoContext from "../store/game-info-context";
+import GameInfoContext from "../../store/game-info-context";
 
-import { getEmojiForCountry } from "../logic";
+import { getEmojiForCountry } from "../../logic";
 
 const Title = () => {
   const { mainCountry } = useContext(GameInfoContext);
@@ -19,4 +19,4 @@ const Title = () => {
   );
 };
 
-export default Title;
+export default memo(Title);

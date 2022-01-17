@@ -2,9 +2,9 @@ import { useState, useEffect, useContext } from "react";
 import GameInfoContext from "./store/game-info-context";
 import "./global.scss";
 
-import Sidebar from "./components/Sidebar";
-import Title from "./components/Title";
-import ProgressBar from "./components/ProgressBar";
+import Sidebar from "./components/Sidebar/Sidebar";
+import Title from "./components/Title/Title";
+import ProgressBar from "./components/Title/ProgressBar";
 import CardArea from "./components/Neighbors/CardArea";
 import CountryCard from "./components/Neighbors/CountryCard";
 

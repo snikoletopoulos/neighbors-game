@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import styles from "./ProgressBar.module.scss";
-import GameInfoContext from "../store/game-info-context";
+import GameInfoContext from "../../store/game-info-context";
 
 const ProgressBar = () => {
   const gameInfo = useContext(GameInfoContext);
