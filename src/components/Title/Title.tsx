@@ -4,7 +4,7 @@ import GameInfoContext from "../../store/game-info-context";
 
 import { getEmojiForCountry } from "../../logic";
 
-const Title = () => {
+const Title: React.FC<Props> = props => {
   const { mainCountry } = useContext(GameInfoContext);
 
   return (

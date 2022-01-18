@@ -12,7 +12,7 @@ const cardStateOptions = {
   notFound: "not-found",
 };
 
-const CountryCard = (props: Props) => {
+const CountryCard: React.FC<Props> = props => {
   const gameInfo = useContext(GameInfoContext);
   const [cardState, setCardState] = useState<string | null>(null);
 
