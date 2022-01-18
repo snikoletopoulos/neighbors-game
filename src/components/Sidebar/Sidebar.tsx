@@ -12,9 +12,9 @@ const Sidebar = () => {
   return (
     <aside className={styles["sidebar"]} id="sidebar">
       <h1>
-        Βρες τους
+        Find
         <br />
-        γείτονες
+        the Neighbors
       </h1>
       <div className={styles['sidebar__info-container']}>
         <p className={styles['sidebar__info-container__label']}>Round:</p>
@@ -29,10 +29,10 @@ const Sidebar = () => {
         active={gameInfo.hasGameEnded}
         onClick={nextRound}
       >
-        Επόμενη χώρα
+      Next Country
       </Button>
       <Button className={styles["sidebar__btn"]} onClick={resetGame}>
-        Νέο παιχνίδι
+      New Game
       </Button>
     </aside>
   );
