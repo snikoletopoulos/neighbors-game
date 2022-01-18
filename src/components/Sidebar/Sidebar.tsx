@@ -16,11 +16,11 @@ const Sidebar = () => {
         <br />
         γείτονες
       </h1>
-      <div className="sidebar__info-container">
-        <p className="sidebar__info-container__label">Γύρος:</p>
-        <p className="sidebar__info-container__value">{roundInfo.round}</p>
-        <p className="sidebar__info-container__label">Σκορ:</p>
-        <p className="sidebar__info-container__value" id="score">
+      <div className={styles['sidebar__info-container']}>
+        <p className={styles['sidebar__info-container__label']}>Round:</p>
+        <p className={styles['sidebar__info-container__value']}>{roundInfo.round}</p>
+        <p className={styles['sidebar__info-container__label']}>Score:</p>
+        <p className={styles['sidebar__info-container__value']} id="score">
           {roundInfo.score}
         </p>
       </div>
