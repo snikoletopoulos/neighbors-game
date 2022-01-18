@@ -1,11 +1,11 @@
-import { useContext } from "react";
+import React, { memo } from "react";
 import styles from "./Title.module.scss";
-import GameInfoContext from "../store/game-info-context";
 
-import { getEmojiForCountry } from "../logic";
+import { IMainCountry } from "../../store/game-info-context";
+import { getEmojiForCountry } from "../../logic";
 
-const Title = () => {
-  const { mainCountry } = useContext(GameInfoContext);
+const Title: React.FC<Props> = props => {
+  const mainCountry = props.country;
 
   return (
     <section className={styles["selected-country"]}>
@@ -19,4 +19,8 @@ const Title = () => {
   );
 };
 
-export default Title;
+export default memo(Title);
+
+interface Props {
+  country: IMainCountry | null;
+}

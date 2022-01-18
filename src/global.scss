@@ -3,6 +3,8 @@
   src: url("/TwemojiMozilla.ttf");
 }
 
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+
 *,
 *::after,
 *::before {
@@ -11,7 +13,7 @@
 
 body {
   margin: 0px;
-  font-family: "Open Sans";
+  font-family: "Lato", "Open Sans", "san-serif";
   background-color: #fff;
   color: #444;
 }
@@ -28,7 +30,6 @@ body {
   }
 
   @media only screen and (max-width: 800px) {
-      display: block;
+    display: block;
   }
 }
-

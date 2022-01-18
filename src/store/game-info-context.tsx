@@ -7,9 +7,10 @@ import {
   useCallback,
 } from "react";
 
-import { pickMainCountry, fetchCountries } from "../logic";
-
 import type ICountry from "../types/country.interface";
+import { useError, errorActions } from "../hooks/use-error";
+
+import { pickMainCountry, fetchCountries } from "../logic";
 
 const defaultValeus: IGameInfoContext = {
   countries: [],
@@ -74,11 +75,13 @@ const roundInfoReducer = (
   }
 };
 
-export const GameInfoProvider = (props: Props) => {
+export const GameInfoProvider: React.FC<Props> = props => {
   const [roundInfo, dispatch] = useReducer(
     roundInfoReducer,
     defaultValeus.roundInfo
   );
+
+  const { ErrorModal, throwError } = useError();
 
   const countries = useRef<ICountry[]>([]);
   const history = useRef<string[]>([]);
@@ -89,22 +92,21 @@ export const GameInfoProvider = (props: Props) => {
   //Fetching all the countries data
   useEffect(() => {
     (async () => {
-      countries.current = await fetchCountries();
-      setMainCountry(
-        countries.current.find(
-          country => country.name.common === "Vietnam"
-        ) as IMainCountry
-      ); //pickMainCountry(countries.current, history.current));
+      try {
+        countries.current = await fetchCountries();
+
+        setMainCountry(pickMainCountry(countries.current, history.current));
+      } catch (error) {
+        throwError({ type: errorActions.ERROR, error: error as Error });
+      }
     })();
   }, []);
 
   useEffect(() => {
     if (!mainCountry) return;
 
-    const hasWon =
-      roundInfo.rightAnswers === mainCountry.borders.length;
-    const hasLost =
-      roundInfo.wrongAnswers === mainCountry.borders.length;
+    const hasWon = roundInfo.rightAnswers === mainCountry.borders.length;
+    const hasLost = roundInfo.wrongAnswers === mainCountry.borders.length;
 
     if (!hasWon && !hasLost) return;
 
@@ -154,6 +156,7 @@ export const GameInfoProvider = (props: Props) => {
         incorrectAnswer,
       }}
     >
+      <ErrorModal />
       {props.children}
     </GameInfoContext.Provider>
   );

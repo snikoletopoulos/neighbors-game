@@ -1,5 +1,7 @@
 import { Component } from "react";
 
+import Modal from "./UI/Modal";
+
 class ErrorBoundary extends Component {
   state = {
     hasError: false,
@@ -12,7 +14,9 @@ class ErrorBoundary extends Component {
   render() {
     return (
       <>
-        {this.state.hasError ? <div>Something went wrong</div> : null}
+        {this.state.hasError && (
+          <Modal teleport header="An error occured" body="error" />
+        )}
         {this.props.children}
       </>
     );
