@@ -30,7 +30,7 @@ const App = () => {
     <div className="game-panel">
       <Sidebar />
       <main>
-        <Title /> {/*TODO? have props so it renders for memo */}
+        <Title country={gameInfo.mainCountry} />
         <ProgressBar />
         <CardArea showModal={gameInfo.hasGameEnded} message={modalMessage}>
           {countryCards.map(country => (

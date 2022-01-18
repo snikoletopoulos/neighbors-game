@@ -1,11 +1,11 @@
-import { useContext, memo } from "react";
+import React, { memo } from "react";
 import styles from "./Title.module.scss";
-import GameInfoContext from "../../store/game-info-context";
 
+import { IMainCountry } from "../../store/game-info-context";
 import { getEmojiForCountry } from "../../logic";
 
 const Title: React.FC<Props> = props => {
-  const { mainCountry } = useContext(GameInfoContext);
+  const mainCountry = props.country;
 
   return (
     <section className={styles["selected-country"]}>
