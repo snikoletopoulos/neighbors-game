@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, memo } from "react";
 import GameInfoContext from "./store/game-info-context";
 import "./global.scss";
 
@@ -45,4 +45,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default memo(App);
