@@ -97,7 +97,9 @@ export const GameInfoProvider: React.FC<Props> = props => {
 
         setMainCountry(pickMainCountry(countries.current, history.current));
       } catch (error) {
-        throwError({ type: errorActions.ERROR, error: error as Error });
+        if (error instanceof Error) {
+          throwError({ type: errorActions.ERROR, error });
+        }
       }
     })();
   }, []);
