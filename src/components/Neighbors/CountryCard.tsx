@@ -35,13 +35,15 @@ const CountryCard: React.FC<Props> = props => {
       setCardState(cardStateOptions.correct);
     } else {
       gameInfo.incorrectAnswer();
-      setCardState(cardStateOptions.incorrect );
+      setCardState(cardStateOptions.incorrect);
     }
   };
 
   return (
     <Card
-      className={`${styles["country-card"]} ${cardState ? styles[cardState] : null}`}
+      className={`${styles["country-card"]} ${
+        cardState ? styles[cardState] : null
+      }`}
       onClick={!cardState ? handleCardClick : null}
     >
       <div className={styles["country-card__icon"]}>
