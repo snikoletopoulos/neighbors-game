@@ -23,8 +23,8 @@ const App = () => {
   }, [gameInfo.mainCountry, gameInfo.countries]);
 
   const modalMessage = gameInfo.hasWon
-    ? "Κέρδισες! Συγχαριτήρια"
-    : "Έχασες! Ξαναπροσπάθησε!";
+    ? "You won! Congratulations!"
+    : "You lost. Try again!";
 
   return (
     <div className="game-panel">
