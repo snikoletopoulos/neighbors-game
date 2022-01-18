@@ -20,3 +20,7 @@ const Title: React.FC<Props> = props => {
 };
 
 export default memo(Title);
+
+interface Props {
+  country: IMainCountry | null;
+}
