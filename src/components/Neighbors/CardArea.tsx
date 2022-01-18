@@ -13,6 +13,7 @@ const CardArea: React.FC<Props> = props => (
 export default memo(CardArea);
 
 interface Props {
+  children: React.ReactNode;
   showModal: boolean;
   message: string;
 }
