@@ -23,13 +23,4 @@
     visibility: hidden;
     border-radius: $box-radius;
   }
-
-  &[data-game-state="Τους βρήκατε όλους!"]::before {
-    visibility: visible;
-  }
-
-  &[data-game-state="Κρίμα, χάσατε!"]::before {
-    color: rgb(122, 4, 4);
-    visibility: visible;
-  }
 }

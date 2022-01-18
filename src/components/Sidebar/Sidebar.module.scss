@@ -19,14 +19,21 @@
 
   &__info-container {
     display: grid;
-    grid-template-areas: "lebel value" "lebel value";
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+
+    &__label {
+      grid-column: 1/2;
+    }
+
+    &__value {
+      grid-column: 2/3;
+      margin-left: auto;
+    }
   }
 
-  &__info-container__value {
-    margin-left: auto;
-  }
 
-  &__btn { //? Better selector
+  &__btn {
     margin-top: auto !important;
 
     &:last-child {
