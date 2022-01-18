@@ -1,3 +1,4 @@
+import { memo } from "react";
 import styles from "./CardArea.module.scss";
 
 import Modal from "../UI/Modal";
@@ -9,10 +10,9 @@ const CardArea: React.FC<Props> = props => (
   </section>
 );
 
-export default CardArea;
+export default memo(CardArea);
 
 interface Props {
-  children: React.ReactNode;
   showModal: boolean;
   message: string;
 }
