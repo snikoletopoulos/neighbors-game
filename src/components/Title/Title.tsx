@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import styles from "./Title.module.scss";
 
-import { IMainCountry } from "../../store/game-info-context";
+import { IMainCountry } from "../../types/store.types"
 import { getEmojiForCountry } from "../../logic";
 
 const Title: React.FC<Props> = props => {

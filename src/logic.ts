@@ -1,6 +1,6 @@
 import axios from "axios";
-import type ICountry from "./types/country.interface";
-import { IMainCountry } from "./store/game-info-context";
+import type ICountry from "./types/country.types";
+import { IMainCountry } from "./types/store.types";
 
 export const fetchCountries = async () => {
   const response = await axios.get<ICountry[]>(

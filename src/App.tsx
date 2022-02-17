@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext, memo } from "react";
-import GameInfoContext from "./store/game-info-context";
+import GameInfoContext from "./store/Context/game-info-context";
 import "./global.scss";
 
 import Sidebar from "./components/Sidebar/Sidebar";
@@ -9,7 +9,7 @@ import CardArea from "./components/Neighbors/CardArea";
 import CountryCard from "./components/Neighbors/CountryCard";
 
 import { cardPick } from "./logic";
-import ICountry from "./types/country.interface.js";
+import ICountry from "./types/country.types.js";
 
 const App = () => {
   const gameInfo = useContext(GameInfoContext);
@@ -22,9 +22,7 @@ const App = () => {
     }
   }, [gameInfo.mainCountry, gameInfo.countries]);
 
-  const modalMessage = gameInfo.hasWon
-    ? "You won! Congratulations!"
-    : "You lost. Try again!";
+  const modalMessage = gameInfo.hasWon ? "You won! Congratulations!" : "You lost. Try again!";
 
   return (
     <div className="game-panel">
@@ -34,10 +32,7 @@ const App = () => {
         <ProgressBar />
         <CardArea showModal={gameInfo.hasGameEnded} message={modalMessage}>
           {countryCards.map(country => (
-            <CountryCard
-              key={`${gameInfo.roundInfo.round}-${country.cca3}`}
-              country={country}
-            />
+            <CountryCard key={`${gameInfo.roundInfo.round}-${country.cca3}`} country={country} />
           ))}
         </CardArea>
       </main>

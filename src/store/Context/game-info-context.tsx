@@ -7,10 +7,11 @@ import {
   useCallback,
 } from "react";
 
-import type ICountry from "../types/country.interface";
-import { useError, errorActions } from "../hooks/use-error";
+import type ICountry from "../../types/country.types";
+import type { IGameInfoContext, IRoundInfo, IMainCountry } from "../../types/store.types";
+import { useError, errorActions } from "../../hooks/use-error";
 
-import { pickMainCountry, fetchCountries } from "../logic";
+import { pickMainCountry, fetchCountries } from "../../logic";
 
 const defaultValeus: IGameInfoContext = {
   countries: [],
@@ -168,27 +169,4 @@ export default GameInfoContext;
 
 interface Props {
   children: React.ReactNode;
-}
-
-interface IGameInfoContext {
-  countries: ICountry[] | null;
-  roundInfo: IRoundInfo;
-  mainCountry: IMainCountry | null;
-  hasGameEnded: boolean;
-  hasWon: boolean;
-  resetGame(): void;
-  nextRound(): void;
-  correctAnswer(): void;
-  incorrectAnswer(): void;
-}
-
-interface IRoundInfo {
-  round: number;
-  score: number;
-  rightAnswers: number;
-  wrongAnswers: number;
-}
-
-export interface IMainCountry extends ICountry {
-  borders: string[];
 }

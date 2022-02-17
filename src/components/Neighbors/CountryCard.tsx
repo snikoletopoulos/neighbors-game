@@ -1,10 +1,10 @@
 import { useState, useEffect, useContext, useCallback } from "react";
 import styles from "./CountryCard.module.scss";
-import GameInfoContext from "../../store/game-info-context";
+import GameInfoContext from "../../store/Context/game-info-context";
 
 import Card from "../UI/Card";
 import { getEmojiForCountry } from "../../logic.js";
-import type ICountry from "../../types/country.interface.js";
+import type ICountry from "../../types/country.types.js";
 
 const cardStateOptions = {
   correct: "correct",

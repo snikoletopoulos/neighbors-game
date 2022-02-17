@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import styles from "./Sidebar.module.scss";
-import GameInfoContext from "../../store/game-info-context";
+import GameInfoContext from "../../store/Context/game-info-context";
 
 import Button from "../UI/Button";
 
