@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-interface InitialState {
+interface RoundInfoState {
 	round: number;
 	score: number;
 	rightAnswers: number;
@@ -9,7 +9,7 @@ interface InitialState {
 	hasWon: boolean;
 }
 
-const initialState: InitialState = {
+const initialState: RoundInfoState = {
 	round: 1,
 	score: 0,
 	rightAnswers: 0,

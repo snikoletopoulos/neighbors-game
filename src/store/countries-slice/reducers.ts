@@ -2,13 +2,13 @@ import { createSlice } from "@reduxjs/toolkit";
 import { IMainCountry } from "../../types/store.types";
 import type ICountry from "../../types/country.types";
 
-interface InitialState {
+interface CountriesState {
 	mainCountry: IMainCountry | null;
 	countries: ICountry[];
 	history: ICountry[];
 }
 
-const initialState: InitialState = {
+const initialState: CountriesState = {
 	mainCountry: null,
 	countries: [],
 	history: [],
