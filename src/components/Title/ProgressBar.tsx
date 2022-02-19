@@ -1,18 +1,19 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 import styles from "./ProgressBar.module.scss";
-import GameInfoContext from "../../store/Context/game-info-context";
+
+import { useSelector } from "../../hooks/store";
 
 const ProgressBar = () => {
-	const gameInfo = useContext(GameInfoContext);
+	const countrySlice = useSelector(state => state.countries);
+	const roundInfoSlice = useSelector(state => state.roundInfo);
 	const [progress, setProgress] = useState(0);
 
-	const totalCorrectAnswers = gameInfo.mainCountry?.borders?.length ?? 0;
+	const totalCorrectAnswers = countrySlice.mainCountry?.borders?.length ?? 0;
 
 	useEffect(() => {
-		const progress =
-			(100 * gameInfo.roundInfo.rightAnswers) / totalCorrectAnswers;
+		const progress = (100 * roundInfoSlice.rightAnswers) / totalCorrectAnswers;
 		setProgress(progress);
-	}, [gameInfo.mainCountry, gameInfo.roundInfo.rightAnswers]);
+	}, [countrySlice.mainCountry, roundInfoSlice.rightAnswers]);
 
 	return (
 		<section id="progress" className={styles["progress-bar"]}>

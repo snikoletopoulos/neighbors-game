@@ -1,13 +1,14 @@
-import { useContext } from "react";
 import styles from "./Sidebar.module.scss";
-import GameInfoContext from "../../store/Context/game-info-context";
+
+import { useSelector, useDispatch } from "src/hooks/store";
 
 import Button from "../UI/Button";
 
 const Sidebar = () => {
-	const gameInfo = useContext(GameInfoContext);
-
-	const { roundInfo, resetGame, nextRound } = gameInfo;
+	// const gameInfo = useContext(GameInfoContext);
+	const roundInfoSlice = useSelector(state => state.roundInfo);
+	const dispatch = useDispatch();
+	// const { roundInfo, resetGame, nextRound } = gameInfo;
 
 	return (
 		<aside className={styles["sidebar"]} id="sidebar">
@@ -19,21 +20,21 @@ const Sidebar = () => {
 			<div className={styles["sidebar__info-container"]}>
 				<p className={styles["sidebar__info-container__label"]}>Round:</p>
 				<p className={styles["sidebar__info-container__value"]}>
-					{roundInfo.round}
+					{roundInfoSlice.round}
 				</p>
 				<p className={styles["sidebar__info-container__label"]}>Score:</p>
 				<p className={styles["sidebar__info-container__value"]} id="score">
-					{roundInfo.score}
+					{roundInfoSlice.score}
 				</p>
 			</div>
 			<Button
 				className={styles["sidebar__btn"]}
-				active={gameInfo.hasGameEnded}
-				onClick={nextRound}
+				active={roundInfoSlice.hasGameEnded}
+				onClick={() => dispatch()}
 			>
 				Next Country
 			</Button>
-			<Button className={styles["sidebar__btn"]} onClick={resetGame}>
+			<Button className={styles["sidebar__btn"]} onClick={() => dispatch()}>
 				New Game
 			</Button>
 		</aside>
