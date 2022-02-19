@@ -7,57 +7,57 @@ import { getEmojiForCountry } from "../../logic.js";
 import type ICountry from "../../types/country.types.js";
 
 const cardStateOptions = {
-  correct: "correct",
-  incorrect: "incorrect",
-  notFound: "not-found",
+	correct: "correct",
+	incorrect: "incorrect",
+	notFound: "not-found",
 };
 
 const CountryCard: React.FC<Props> = props => {
-  const gameInfo = useContext(GameInfoContext);
-  const [cardState, setCardState] = useState<string | null>(null);
+	const gameInfo = useContext(GameInfoContext);
+	const [cardState, setCardState] = useState<string | null>(null);
 
-  useEffect(() => {
-    if (cardState === cardStateOptions.correct) return;
+	useEffect(() => {
+		if (cardState === cardStateOptions.correct) return;
 
-    // Validate card
-    if (gameInfo.hasGameEnded && isCardCorrect) {
-      setCardState(cardStateOptions.notFound);
-    }
-  }, [gameInfo.hasGameEnded]);
+		// Validate card
+		if (gameInfo.hasGameEnded && isCardCorrect) {
+			setCardState(cardStateOptions.notFound);
+		}
+	}, [gameInfo.hasGameEnded]);
 
-  const isCardCorrect = gameInfo.mainCountry?.borders.includes(
-    props.country.cca3
-  );
+	const isCardCorrect = gameInfo.mainCountry?.borders.includes(
+		props.country.cca3
+	);
 
-  const handleCardClick = () => {
-    if (isCardCorrect) {
-      gameInfo.correctAnswer();
-      setCardState(cardStateOptions.correct);
-    } else {
-      gameInfo.incorrectAnswer();
-      setCardState(cardStateOptions.incorrect);
-    }
-  };
+	const handleCardClick = () => {
+		if (isCardCorrect) {
+			gameInfo.correctAnswer();
+			setCardState(cardStateOptions.correct);
+		} else {
+			gameInfo.incorrectAnswer();
+			setCardState(cardStateOptions.incorrect);
+		}
+	};
 
-  return (
-    <Card
-      className={`${styles["country-card"]} ${
-        cardState ? styles[cardState] : null
-      }`}
-      onClick={!cardState ? handleCardClick : null}
-    >
-      <div className={styles["country-card__icon"]}>
-        {getEmojiForCountry(props.country.cca2)}
-      </div>
-      <p className={styles["country-card__text"]}>
-        {props.country.name.common}
-      </p>
-    </Card>
-  );
+	return (
+		<Card
+			className={`${styles["country-card"]} ${
+				cardState ? styles[cardState] : null
+			}`}
+			onClick={!cardState ? handleCardClick : null}
+		>
+			<div className={styles["country-card__icon"]}>
+				{getEmojiForCountry(props.country.cca2)}
+			</div>
+			<p className={styles["country-card__text"]}>
+				{props.country.name.common}
+			</p>
+		</Card>
+	);
 };
 
 export default CountryCard;
 
 interface Props {
-  country: ICountry;
+	country: ICountry;
 }
