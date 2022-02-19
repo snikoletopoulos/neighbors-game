@@ -1,6 +1,5 @@
 import { useState, useEffect, useContext, useCallback } from "react";
 import styles from "./CountryCard.module.scss";
-import GameInfoContext from "../../store/Context/game-info-context";
 
 import Card from "../UI/Card";
 import { getEmojiForCountry } from "../../logic.js";
@@ -11,6 +10,10 @@ const cardStateOptions = {
 	incorrect: "incorrect",
 	notFound: "not-found",
 };
+
+interface Props {
+	country: ICountry;
+}
 
 const CountryCard: React.FC<Props> = props => {
 	const gameInfo = useContext(GameInfoContext);
@@ -57,7 +60,3 @@ const CountryCard: React.FC<Props> = props => {
 };
 
 export default CountryCard;
-
-interface Props {
-	country: ICountry;
-}

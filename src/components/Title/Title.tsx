@@ -4,6 +4,10 @@ import styles from "./Title.module.scss";
 import { IMainCountry } from "../../types/store.types";
 import { getEmojiForCountry } from "../../logic";
 
+interface Props {
+	country: IMainCountry | null;
+}
+
 const Title: React.FC<Props> = props => {
 	const mainCountry = props.country;
 
@@ -20,7 +24,3 @@ const Title: React.FC<Props> = props => {
 };
 
 export default memo(Title);
-
-interface Props {
-	country: IMainCountry | null;
-}

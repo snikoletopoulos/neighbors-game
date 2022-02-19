@@ -3,6 +3,11 @@ import styles from "./CardArea.module.scss";
 
 import Modal from "../UI/Modal";
 
+interface Props {
+	children: React.ReactNode;
+	showModal: boolean;
+	message: string;
+}
 const CardArea: React.FC<Props> = props => (
 	<section className={styles["neighbours"]}>
 		{props.showModal && <Modal header="Game over" body={props.message} />}
@@ -11,9 +16,3 @@ const CardArea: React.FC<Props> = props => (
 );
 
 export default memo(CardArea);
-
-interface Props {
-	children: React.ReactNode;
-	showModal: boolean;
-	message: string;
-}
