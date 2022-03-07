@@ -12,7 +12,7 @@ export const fetchCountries = async () => {
 
 		return response.data;
 	} catch (error) {
-		return getAxiosError(error as AxiosError);
+		return { errors: getAxiosError(error as AxiosError) };
 	}
 };
 
@@ -20,18 +20,28 @@ export const pickMainCountry = (
 	countries: ICountry[],
 	history: string[]
 ): IMainCountry => {
-	const mainCountry = shuffleArray<ICountry>(countries)[0];
+	try {
+		const mainCountry = shuffleArray<ICountry>([...countries])[0];
 
-	if (Array.isArray(mainCountry.borders) && mainCountry.borders.length > 0) {
-		const isInHistory = history.includes(mainCountry.name.common);
-		if (!isInHistory) {
-			history.push(mainCountry.name.common);
-
-			return mainCountry as IMainCountry;
+		if (
+			Array.isArray(mainCountry.borders) &&
+			mainCountry.borders.length === 0
+		) {
+			throw "No borders found";
 		}
-	}
 
-	return pickMainCountry(countries, history);
+		const isInHistory = history.includes(mainCountry.name.common);
+		if (isInHistory) {
+			throw "Country already in history";
+		}
+
+		return mainCountry as IMainCountry;
+	} catch (error) {
+		if (error instanceof Error) {
+			throw error;
+		}
+		return pickMainCountry(countries, history);
+	}
 };
 
 export const filterCountries = (countries: ICountry[]): ICountry[] =>
@@ -46,7 +56,7 @@ export const cardPick = (
 	const selectedCountries = [
 		...countries.filter(country => mainCountry.borders.includes(country.cca3)),
 	];
-	const shuffledCountries = shuffleArray<ICountry>(countries);
+	const shuffledCountries = shuffleArray<ICountry>([...countries]);
 
 	for (
 		let i = 0;
