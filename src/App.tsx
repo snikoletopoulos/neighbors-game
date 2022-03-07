@@ -12,6 +12,7 @@ import Title from "components/Header/Title";
 import ProgressBar from "components/Header/ProgressBar";
 import CardArea from "components/Neighbors/CardArea";
 import CountryCard from "components/Neighbors/CountryCard";
+import { roundActions } from "store/round-info-slice/reducers";
 
 const App = () => {
 	const countrySlice = useSelector(state => state.countries);
@@ -41,6 +42,19 @@ const App = () => {
 			);
 		}
 	}, [countrySlice.mainCountry, countrySlice.countries]);
+
+	useEffect(() => {
+		if (!countrySlice.mainCountry) return;
+
+		const hasWon =
+			roundInfoSlice.rightAnswers === countrySlice.mainCountry.borders.length;
+		const hasLost =
+			roundInfoSlice.wrongAnswers === countrySlice.mainCountry.borders.length;
+
+		if (!hasWon && !hasLost) return;
+
+		dispatch(roundActions.gameEnded(hasWon));
+	}, [roundInfoSlice.rightAnswers, roundInfoSlice.wrongAnswers]);
 
 	const modalMessage = roundInfoSlice.hasWon
 		? "You won! Congratulations!"
