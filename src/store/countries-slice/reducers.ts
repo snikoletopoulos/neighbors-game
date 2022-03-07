@@ -4,8 +4,6 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import { IMainCountry } from "types/country.types";
 import type ICountry from "types/country-api.types";
 
-import { pickMainCountry } from "helpers/country";
-
 interface CountriesState {
 	mainCountry: IMainCountry | null;
 	countries: ICountry[];
@@ -22,11 +20,14 @@ const countriesSlice = createSlice({
 	name: "countries",
 	initialState,
 	reducers: {
-		storeCountries(store, action: PayloadAction<ICountry[]>) {
-			store.countries = action.payload;
+		storeCountries(store, { payload }: PayloadAction<ICountry[]>) {
+			store.countries = payload;
 		},
 
-		getNeighboursOptions(state) {},
+		storeMainCountry(state, { payload }: PayloadAction<IMainCountry>) {
+			state.mainCountry = payload;
+			state.history.push(payload.name.common);
+		},
 	},
 });
 
