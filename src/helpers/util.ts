@@ -1,10 +1,12 @@
 export const shuffleArray = <T>(array: T[]): T[] => {
 	for (let length = array.length - 1; length > 0; length--) {
 		const elementToBeSwaped = Math.floor(Math.random() * length);
+
 		const temp = array[length];
 		array[length] = array[elementToBeSwaped];
 		array[elementToBeSwaped] = temp;
 	}
+
 	return array;
 };
 
@@ -12,5 +14,6 @@ export const shuffleArray = <T>(array: T[]): T[] => {
 export const getEmojiForCountry = (countryCode: string) => {
 	const OFFSET = 127397;
 	const codeArray = Array.from(countryCode.toUpperCase());
+
 	return String.fromCodePoint(...codeArray.map(c => c.charCodeAt(0) + OFFSET));
 };
