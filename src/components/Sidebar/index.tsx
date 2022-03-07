@@ -2,12 +2,25 @@ import styles from "./Sidebar.module.scss";
 
 import { useSelector, useDispatch } from "helpers/store";
 import { roundActions } from "store/round-info-slice/reducers";
+import { changeMainCountry } from "store/countries-slice/actions";
 
 import Button from "components/UI/Button";
 
 const Sidebar = () => {
 	const roundInfoSlice = useSelector(state => state.roundInfo);
 	const dispatch = useDispatch();
+
+	const handleNextRoundClick = () => {
+		dispatch(roundActions.nextRound());
+		dispatch(changeMainCountry());
+	};
+
+	const handleNewGameClick = () => {
+		if (!confirm("Are you sure? You will lose all your progress!")) return;
+
+		dispatch(roundActions.resetRound());
+		dispatch(changeMainCountry());
+	};
 
 	return (
 		<aside className={styles["sidebar"]} id="sidebar">
@@ -29,14 +42,11 @@ const Sidebar = () => {
 			<Button
 				className={styles["sidebar__btn"]}
 				active={roundInfoSlice.hasGameEnded}
-				onClick={() => dispatch(roundActions.nextRound())}
+				onClick={handleNextRoundClick}
 			>
 				Next Country
 			</Button>
-			<Button
-				className={styles["sidebar__btn"]}
-				onClick={() => dispatch(roundActions.resetRound())}
-			>
+			<Button className={styles["sidebar__btn"]} onClick={handleNewGameClick}>
 				New Game
 			</Button>
 		</aside>
