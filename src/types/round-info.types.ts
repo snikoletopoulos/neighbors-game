@@ -1,4 +1,5 @@
-import type ICountry from "./country.types";
+import type ICountry from "types/country-api.types";
+import type { IMainCountry } from "types/country.types";
 
 export interface IGameInfoContext {
 	countries: ICountry[] | null;
@@ -17,8 +18,4 @@ export interface IRoundInfo {
 	score: number;
 	rightAnswers: number;
 	wrongAnswers: number;
-}
-
-export interface IMainCountry extends ICountry {
-	borders: string[];
 }
