@@ -1,4 +1,4 @@
-import type { RootState, AppDispatch } from "store";
+import type { RootState, AppDispatch } from "types/store.types";
 import {
 	useSelector as useReduxSelector,
 	useDispatch as useReduxDispach,
