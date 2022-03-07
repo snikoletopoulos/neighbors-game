@@ -9,7 +9,7 @@ import { pickMainCountry } from "helpers/country";
 interface CountriesState {
 	mainCountry: IMainCountry | null;
 	countries: ICountry[];
-	history: ICountry[];
+	history: string[];
 }
 
 const initialState: CountriesState = {
