@@ -22,7 +22,9 @@ const countriesSlice = createSlice({
 	name: "countries",
 	initialState,
 	reducers: {
-		pickMainCountry(state) {},
+		storeCountries(store, action: PayloadAction<ICountry[]>) {
+			store.countries = action.payload;
+		},
 
 		getNeighboursOptions(state) {},
 	},
