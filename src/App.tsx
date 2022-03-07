@@ -1,9 +1,9 @@
 import { useState, useEffect, memo } from "react";
 import "./global.scss";
-import { useSelector, useDispatch } from "hooks/store";
+import { useSelector, useDispatch } from "helpers/store";
 import { countriesActions } from "store/countries-slice/reducers";
 
-import ICountry from "types/country.types.js";
+import ICountry from "types/country-api.types.js";
 import { cardPick } from "helpers/country";
 import { fetchAllCountries } from "store/countries-slice/actions";
 
