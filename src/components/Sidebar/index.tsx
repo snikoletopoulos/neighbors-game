@@ -1,14 +1,13 @@
 import styles from "./Sidebar.module.scss";
 
-import { useSelector, useDispatch } from "src/hooks/store";
+import { useSelector, useDispatch } from "hooks/store";
+import { roundActions } from "store/round-info-slice/reducers";
 
-import Button from "../UI/Button";
+import Button from "components/UI/Button";
 
 const Sidebar = () => {
-	// const gameInfo = useContext(GameInfoContext);
 	const roundInfoSlice = useSelector(state => state.roundInfo);
 	const dispatch = useDispatch();
-	// const { roundInfo, resetGame, nextRound } = gameInfo;
 
 	return (
 		<aside className={styles["sidebar"]} id="sidebar">
@@ -30,11 +29,14 @@ const Sidebar = () => {
 			<Button
 				className={styles["sidebar__btn"]}
 				active={roundInfoSlice.hasGameEnded}
-				onClick={() => dispatch()}
+				onClick={() => dispatch(roundActions.nextRound())}
 			>
 				Next Country
 			</Button>
-			<Button className={styles["sidebar__btn"]} onClick={() => dispatch()}>
+			<Button
+				className={styles["sidebar__btn"]}
+				onClick={() => dispatch(roundActions.resetRound())}
+			>
 				New Game
 			</Button>
 		</aside>

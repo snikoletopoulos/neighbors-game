@@ -1,8 +1,8 @@
 import React, { memo } from "react";
 import styles from "./Title.module.scss";
 
-import { IMainCountry } from "../../types/store.types";
-import { getEmojiForCountry } from "../../logic";
+import { IMainCountry } from "types/store.types";
+import { getEmojiForCountry } from "helpers/util";
 
 interface Props {
 	country: IMainCountry | null;

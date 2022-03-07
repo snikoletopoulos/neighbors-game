@@ -1,7 +1,7 @@
 import { createPortal } from "react-dom";
-
 import styles from "./Modal.module.scss";
-import Card from "./Card";
+
+import Card from "components/UI/Card";
 
 const Backdrop = () => {
 	return <div className={styles["modal__backdrop"]}></div>;

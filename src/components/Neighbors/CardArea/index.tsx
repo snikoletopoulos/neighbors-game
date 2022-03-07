@@ -1,7 +1,7 @@
 import { memo } from "react";
 import styles from "./CardArea.module.scss";
 
-import Modal from "../UI/Modal";
+import Modal from "components/UI/Modal";
 
 interface Props {
 	children: React.ReactNode;

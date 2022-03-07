@@ -1,6 +1,6 @@
 import { Component } from "react";
 
-import Modal from "./UI/Modal";
+import Modal from "components/UI/Modal";
 
 class ErrorBoundary extends Component {
 	state = {

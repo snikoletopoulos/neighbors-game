@@ -1,9 +1,13 @@
-import { useState, useEffect, useContext, useCallback } from "react";
+import { useState, useEffect } from "react";
 import styles from "./CountryCard.module.scss";
 
-import Card from "../UI/Card";
-import { getEmojiForCountry } from "../../logic.js";
-import type ICountry from "../../types/country.types.js";
+import { useSelector, useDispatch } from "hooks/store";
+import { roundActions } from "store/round-info-slice/reducers";
+
+import type ICountry from "types/country.types.js";
+import { getEmojiForCountry } from "helpers/util";
+
+import Card from "components/UI/Card";
 
 const cardStateOptions = {
 	correct: "correct",
@@ -16,28 +20,33 @@ interface Props {
 }
 
 const CountryCard: React.FC<Props> = props => {
-	const gameInfo = useContext(GameInfoContext);
+	const countrySlice = useSelector(state => state.countries);
+	const roundInfoSlice = useSelector(state => state.roundInfo);
+	const dispatch = useDispatch();
+
 	const [cardState, setCardState] = useState<string | null>(null);
 
 	useEffect(() => {
 		if (cardState === cardStateOptions.correct) return;
 
 		// Validate card
-		if (gameInfo.hasGameEnded && isCardCorrect) {
+		if (roundInfoSlice.hasGameEnded && isCardCorrect) {
 			setCardState(cardStateOptions.notFound);
 		}
-	}, [gameInfo.hasGameEnded]);
+	}, [roundInfoSlice.hasGameEnded]);
 
-	const isCardCorrect = gameInfo.mainCountry?.borders.includes(
+	const isCardCorrect = countrySlice.mainCountry?.borders.includes(
 		props.country.cca3
 	);
 
 	const handleCardClick = () => {
 		if (isCardCorrect) {
-			gameInfo.correctAnswer();
+			dispatch(roundActions.correctAnswer());
+			// gameInfo.correctAnswer();
 			setCardState(cardStateOptions.correct);
 		} else {
-			gameInfo.incorrectAnswer();
+			dispatch(roundActions.incorrectAnswer());
+			// gameInfo.incorrectAnswer();
 			setCardState(cardStateOptions.incorrect);
 		}
 	};

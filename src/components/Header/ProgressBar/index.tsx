@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import styles from "./ProgressBar.module.scss";
 
-import { useSelector } from "../../hooks/store";
+import { useSelector } from "hooks/store";
 
 const ProgressBar = () => {
 	const countrySlice = useSelector(state => state.countries);
 	const roundInfoSlice = useSelector(state => state.roundInfo);
+
 	const [progress, setProgress] = useState(0);
 
 	const totalCorrectAnswers = countrySlice.mainCountry?.borders?.length ?? 0;

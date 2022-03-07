@@ -1,15 +1,17 @@
-import { useState, useEffect, useContext, memo } from "react";
-import GameInfoContext from "./store/Context/game-info-context";
+import { useState, useEffect, memo } from "react";
 import "./global.scss";
+import { useSelector, useDispatch } from "hooks/store";
+import { countriesActions } from "store/countries-slice/reducers";
 
-import Sidebar from "./components/Sidebar/Sidebar";
-import Title from "./components/Title/Title";
-import ProgressBar from "./components/Title/ProgressBar";
-import CardArea from "./components/Neighbors/CardArea";
-import CountryCard from "./components/Neighbors/CountryCard";
+import ICountry from "types/country.types.js";
+import { cardPick } from "helpers/country";
+import { fetchAllCountries } from "store/countries-slice/actions";
 
-import { cardPick } from "./logic";
-import ICountry from "./types/country.types.js";
+import Sidebar from "components/Sidebar";
+import Title from "components/Header/Title";
+import ProgressBar from "components/Header/ProgressBar";
+import CardArea from "components/Neighbors/CardArea";
+import CountryCard from "components/Neighbors/CountryCard";
 
 const App = () => {
 	const gameInfo = useContext(GameInfoContext);
