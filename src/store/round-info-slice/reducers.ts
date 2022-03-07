@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface RoundInfoState {
 	round: number;
@@ -47,6 +47,11 @@ const roundInfoSlice = createSlice({
 		incorrectAnswer: state => {
 			state.score -= 3;
 			state.wrongAnswers++;
+		},
+
+		gameEnded(state, { payload }: PayloadAction<boolean>) {
+			state.hasGameEnded = true;
+			state.hasWon = payload;
 		},
 	},
 });
