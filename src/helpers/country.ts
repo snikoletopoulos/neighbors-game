@@ -1,7 +1,7 @@
 import axios, { AxiosError } from "axios";
 import { getAxiosError } from "helpers/axios";
-import type ICountry from "types/country.types";
-import { IMainCountry } from "types/store.types";
+import type ICountry from "types/country-api.types";
+import { IMainCountry } from "types/country.types";
 import { shuffleArray } from "helpers/util";
 
 export const fetchCountries = async () => {

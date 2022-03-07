@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import styles from "./CountryCard.module.scss";
 
-import { useSelector, useDispatch } from "hooks/store";
+import { useSelector, useDispatch } from "helpers/store";
 import { roundActions } from "store/round-info-slice/reducers";
 
-import type ICountry from "types/country.types.js";
+import type ICountry from "types/country-api.types.js";
 import { getEmojiForCountry } from "helpers/util";
 
 import Card from "components/UI/Card";

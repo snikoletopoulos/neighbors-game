@@ -1,6 +1,6 @@
 import styles from "./Sidebar.module.scss";
 
-import { useSelector, useDispatch } from "hooks/store";
+import { useSelector, useDispatch } from "helpers/store";
 import { roundActions } from "store/round-info-slice/reducers";
 
 import Button from "components/UI/Button";

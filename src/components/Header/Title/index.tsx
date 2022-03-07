@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import styles from "./Title.module.scss";
 
-import { IMainCountry } from "types/store.types";
+import { IMainCountry } from "types/country.types";
 import { getEmojiForCountry } from "helpers/util";
 
 interface Props {

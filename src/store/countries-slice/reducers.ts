@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
-import { IMainCountry } from "types/store.types";
-import type ICountry from "types/country.types";
+import { IMainCountry } from "types/country.types";
+import type ICountry from "types/country-api.types";
 
 import { pickMainCountry } from "helpers/country";
 
