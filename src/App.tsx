@@ -43,6 +43,7 @@ const App = () => {
 		}
 	}, [countrySlice.mainCountry, countrySlice.countries]);
 
+	// Check if game has ended
 	useEffect(() => {
 		if (!countrySlice.mainCountry) return;
 
