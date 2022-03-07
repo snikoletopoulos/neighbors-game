@@ -2,9 +2,13 @@ import { Component } from "react";
 
 import Modal from "components/UI/Modal";
 
-class ErrorBoundary extends Component {
-	state = {
-		hasError: false,
+interface State {
+	error: Error | null;
+}
+
+class ErrorBoundary extends Component<{}, State> {
+	state: State = {
+		error: null,
 	};
 
 	static getDerivedStateFromError(error: Error) {
