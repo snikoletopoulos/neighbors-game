@@ -1,26 +1,33 @@
 import { Component } from "react";
 
-import Modal from "./UI/Modal";
+import Modal from "components/UI/Modal";
 
-class ErrorBoundary extends Component {
-  state = {
-    hasError: false,
-  };
+interface State {
+	error: Error | null;
+}
 
-  componentDidCatch(error: any, info: any) {
-    this.setState({ hasError: true });
-  }
+class ErrorBoundary extends Component<{}, State> {
+	state: State = {
+		error: null,
+	};
 
-  render() {
-    return (
-      <>
-        {this.state.hasError && (
-          <Modal teleport header="An error occured" body="error" />
-        )}
-        {this.props.children}
-      </>
-    );
-  }
+	static getDerivedStateFromError(error: Error) {
+		return { error: error };
+	}
+
+	render() {
+		if (this.state.error) {
+			return (
+				<Modal
+					teleport
+					header="An error occured"
+					body={this.state.error.message}
+				/>
+			);
+		}
+
+		return this.props.children;
+	}
 }
 
 export default ErrorBoundary;

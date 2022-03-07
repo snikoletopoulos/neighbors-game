@@ -1,48 +1,86 @@
-import { useState, useEffect, useContext, memo } from "react";
-import GameInfoContext from "./store/game-info-context";
+import { useState, useEffect, memo } from "react";
 import "./global.scss";
+import { useSelector, useDispatch } from "helpers/store";
 
-import Sidebar from "./components/Sidebar/Sidebar";
-import Title from "./components/Title/Title";
-import ProgressBar from "./components/Title/ProgressBar";
-import CardArea from "./components/Neighbors/CardArea";
-import CountryCard from "./components/Neighbors/CountryCard";
+import { changeMainCountry } from "store/countries-slice/actions";
+import ICountry from "types/country-api.types.js";
+import { cardPick } from "helpers/country";
+import { fetchAllCountries } from "store/countries-slice/actions";
+import { roundActions } from "store/round-info-slice/reducers";
 
-import { cardPick } from "./logic";
-import ICountry from "./types/country.interface.js";
+import Sidebar from "components/Sidebar";
+import Title from "components/Header/Title";
+import ProgressBar from "components/Header/ProgressBar";
+import CardArea from "components/Neighbors/CardArea";
+import CountryCard from "components/Neighbors/CountryCard";
 
 const App = () => {
-  const gameInfo = useContext(GameInfoContext);
-  const [countryCards, setCountryCards] = useState<ICountry[]>([]);
+	const countrySlice = useSelector(state => state.countries);
+	const roundInfoSlice = useSelector(state => state.roundInfo);
+	const dispatch = useDispatch();
 
-  // Updating the cards when the title changes
-  useEffect(() => {
-    if (gameInfo.mainCountry && gameInfo.countries) {
-      setCountryCards(cardPick(gameInfo.mainCountry, gameInfo.countries));
-    }
-  }, [gameInfo.mainCountry, gameInfo.countries]);
+	const [countryCards, setCountryCards] = useState<ICountry[]>([]);
 
-  const modalMessage = gameInfo.hasWon
-    ? "You won! Congratulations!"
-    : "You lost. Try again!";
+	//Fetching all the countries data
+	useEffect(() => {
+		(async () => {
+			const error = await dispatch(fetchAllCountries());
 
-  return (
-    <div className="game-panel">
-      <Sidebar />
-      <main>
-        <Title country={gameInfo.mainCountry} />
-        <ProgressBar />
-        <CardArea showModal={gameInfo.hasGameEnded} message={modalMessage}>
-          {countryCards.map(country => (
-            <CountryCard
-              key={`${gameInfo.roundInfo.round}-${country.cca3}`}
-              country={country}
-            />
-          ))}
-        </CardArea>
-      </main>
-    </div>
-  );
+			if (error) {
+				throw new Error("Error fetching countries");
+			}
+
+			dispatch(changeMainCountry());
+		})();
+	}, []);
+
+	// Updating the cards when the title changes
+	useEffect(() => {
+		if (countrySlice.mainCountry && countrySlice.countries) {
+			setCountryCards(
+				cardPick(countrySlice.mainCountry, countrySlice.countries)
+			);
+		}
+	}, [countrySlice.mainCountry, countrySlice.countries]);
+
+	// Check if game has ended
+	useEffect(() => {
+		if (!countrySlice.mainCountry) return;
+
+		const hasWon =
+			roundInfoSlice.rightAnswers === countrySlice.mainCountry.borders.length;
+		const hasLost =
+			roundInfoSlice.wrongAnswers === countrySlice.mainCountry.borders.length;
+
+		if (!hasWon && !hasLost) return;
+
+		dispatch(roundActions.gameEnded(hasWon));
+	}, [roundInfoSlice.rightAnswers, roundInfoSlice.wrongAnswers]);
+
+	const modalMessage = roundInfoSlice.hasWon
+		? "You won! Congratulations!"
+		: "You lost. Try again!";
+
+	return (
+		<div className="game-panel">
+			<Sidebar />
+			<main>
+				<Title country={countrySlice?.mainCountry} />
+				<ProgressBar />
+				<CardArea
+					showModal={roundInfoSlice?.hasGameEnded}
+					message={modalMessage}
+				>
+					{countryCards.map(country => (
+						<CountryCard
+							key={`${roundInfoSlice.round}-${country.cca3}`}
+							country={country}
+						/>
+					))}
+				</CardArea>
+			</main>
+		</div>
+	);
 };
 
 export default memo(App);
