@@ -26,6 +26,8 @@ const roundInfoSlice = createSlice({
 			state.round++;
 			state.rightAnswers = 0;
 			state.wrongAnswers = 0;
+			state.hasGameEnded = false;
+			state.hasWon = false;
 		},
 
 		resetRound: state => {
@@ -33,6 +35,8 @@ const roundInfoSlice = createSlice({
 			state.score = 0;
 			state.rightAnswers = 0;
 			state.wrongAnswers = 0;
+			state.hasGameEnded = false;
+			state.hasWon = false;
 		},
 
 		correctAnswer: state => {
