@@ -28,5 +28,5 @@ const countriesSlice = createSlice({
 	},
 });
 
-export const actions = countriesSlice.actions;
+export const countriesActions = countriesSlice.actions;
 export default countriesSlice.reducer;

@@ -47,5 +47,5 @@ const roundInfoSlice = createSlice({
 	},
 });
 
-export const actions = roundInfoSlice.actions;
+export const roundActions = roundInfoSlice.actions;
 export default roundInfoSlice.reducer;
