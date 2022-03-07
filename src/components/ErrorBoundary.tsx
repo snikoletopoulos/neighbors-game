@@ -12,14 +12,17 @@ class ErrorBoundary extends Component {
 	}
 
 	render() {
-		return (
-			<>
-				{this.state.hasError && (
-					<Modal teleport header="An error occured" body="error" />
-				)}
-				{this.props.children}
-			</>
-		);
+		if (this.state.error) {
+			return (
+				<Modal
+					teleport
+					header="An error occured"
+					body={this.state.error.message}
+				/>
+			);
+		}
+
+		return this.props.children;
 	}
 }
 
