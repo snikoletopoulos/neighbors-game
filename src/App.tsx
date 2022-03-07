@@ -1,8 +1,8 @@
 import { useState, useEffect, memo } from "react";
 import "./global.scss";
 import { useSelector, useDispatch } from "helpers/store";
-import { countriesActions } from "store/countries-slice/reducers";
 
+import { changeMainCountry } from "store/countries-slice/actions";
 import ICountry from "types/country-api.types.js";
 import { cardPick } from "helpers/country";
 import { fetchAllCountries } from "store/countries-slice/actions";
@@ -19,6 +19,19 @@ const App = () => {
 	const dispatch = useDispatch();
 
 	const [countryCards, setCountryCards] = useState<ICountry[]>([]);
+
+	//Fetching all the countries data
+	useEffect(() => {
+		(async () => {
+			const error = await dispatch(fetchAllCountries());
+
+			if (error) {
+				throw new Error("Error fetching countries");
+			}
+
+			dispatch(changeMainCountry());
+		})();
+	}, []);
 
 	// Updating the cards when the title changes
 	useEffect(() => {
