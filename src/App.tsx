@@ -6,13 +6,13 @@ import { changeMainCountry } from "store/countries-slice/actions";
 import ICountry from "types/country-api.types.js";
 import { cardPick } from "helpers/country";
 import { fetchAllCountries } from "store/countries-slice/actions";
+import { roundActions } from "store/round-info-slice/reducers";
 
 import Sidebar from "components/Sidebar";
 import Title from "components/Header/Title";
 import ProgressBar from "components/Header/ProgressBar";
 import CardArea from "components/Neighbors/CardArea";
 import CountryCard from "components/Neighbors/CountryCard";
-import { roundActions } from "store/round-info-slice/reducers";
 
 const App = () => {
 	const countrySlice = useSelector(state => state.countries);
