@@ -14,17 +14,22 @@ import CardArea from "components/Neighbors/CardArea";
 import CountryCard from "components/Neighbors/CountryCard";
 
 const App = () => {
-	const gameInfo = useContext(GameInfoContext);
+	const countrySlice = useSelector(state => state.countries);
+	const roundInfoSlice = useSelector(state => state.roundInfo);
+	const dispatch = useDispatch();
+
 	const [countryCards, setCountryCards] = useState<ICountry[]>([]);
 
 	// Updating the cards when the title changes
 	useEffect(() => {
-		if (gameInfo.mainCountry && gameInfo.countries) {
-			setCountryCards(cardPick(gameInfo.mainCountry, gameInfo.countries));
+		if (countrySlice.mainCountry && countrySlice.countries) {
+			setCountryCards(
+				cardPick(countrySlice.mainCountry, countrySlice.countries)
+			);
 		}
-	}, [gameInfo.mainCountry, gameInfo.countries]);
+	}, [countrySlice.mainCountry, countrySlice.countries]);
 
-	const modalMessage = gameInfo.hasWon
+	const modalMessage = roundInfoSlice.hasWon
 		? "You won! Congratulations!"
 		: "You lost. Try again!";
 
@@ -32,12 +37,15 @@ const App = () => {
 		<div className="game-panel">
 			<Sidebar />
 			<main>
-				<Title country={gameInfo.mainCountry} />
+				<Title country={countrySlice?.mainCountry} />
 				<ProgressBar />
-				<CardArea showModal={gameInfo.hasGameEnded} message={modalMessage}>
+				<CardArea
+					showModal={roundInfoSlice?.hasGameEnded}
+					message={modalMessage}
+				>
 					{countryCards.map(country => (
 						<CountryCard
-							key={`${gameInfo.roundInfo.round}-${country.cca3}`}
+							key={`${roundInfoSlice.round}-${country.cca3}`}
 							country={country}
 						/>
 					))}
