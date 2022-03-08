@@ -17,7 +17,7 @@ const Title: React.FC<Props> = props => {
 				{mainCountry?.cca2 && getEmojiForCountry(mainCountry?.cca2)}
 			</span>
 			<h1 className={styles["selected-country__name"]}>
-				{mainCountry?.name.common ?? "Loading..."}
+				{mainCountry?.name.common ?? `${t("loading")}...`}
 			</h1>
 		</section>
 	);
