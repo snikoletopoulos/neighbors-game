@@ -6,4 +6,5 @@ export default {
 	score: "Score",
 	round: "Round",
 	loading: "Loading",
+	game_over: "Game Over",
 };

@@ -5,4 +5,5 @@ export default {
 	next_round: "Επόμενη χώρα",
 	score: "Σκορ",
 	round: "Γύρος",
+	game_over: "Τέλος Παιχνιδιού",
 };
