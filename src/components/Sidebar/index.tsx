@@ -32,11 +32,15 @@ const Sidebar = () => {
 				the Neighbors
 			</h1>
 			<div className={styles["sidebar__info-container"]}>
-				<p className={styles["sidebar__info-container__label"]}>{t("round")}:</p>
+				<p className={styles["sidebar__info-container__label"]}>
+					{t("round")}:
+				</p>
 				<p className={styles["sidebar__info-container__value"]}>
 					{roundInfoSlice.round}
 				</p>
-				<p className={styles["sidebar__info-container__label"]}>{t("score")}:</p>
+				<p className={styles["sidebar__info-container__label"]}>
+					{t("score")}:
+				</p>
 				<p className={styles["sidebar__info-container__value"]} id="score">
 					{roundInfoSlice.score}
 				</p>
