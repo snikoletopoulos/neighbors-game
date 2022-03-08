@@ -7,6 +7,17 @@ import { getEmojiForCountry } from "helpers/util";
 
 import Select from "react-select";
 
+const languageOptions = [
+	{
+		label: getEmojiForCountry("EN"),
+		value: "en",
+	},
+	{
+		label: getEmojiForCountry("GR"),
+		value: "gr",
+	},
+];
+
 interface Props {
 	country: IMainCountry | null;
 }
@@ -21,17 +32,6 @@ const Title: React.FC<Props> = props => {
 		setSelectedLanguage(event.value);
 	};
 
-	const options = [
-		{
-			label: "English",
-			value: "en",
-		},
-		{
-			label: "Greek",
-			value: "gr",
-		},
-	];
-
 	return (
 		<section className={styles["selected-country"]}>
 			<span className={styles["selected-country__flag"]}>
@@ -42,7 +42,7 @@ const Title: React.FC<Props> = props => {
 			</h1>
 			<Select
 				className={styles["language-selector"]}
-				options={options}
+				options={languageOptions}
 				onChange={handleLanguageChange}
 				value={selectedLanguage}
 			/>
