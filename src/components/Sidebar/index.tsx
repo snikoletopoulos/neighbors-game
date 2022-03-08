@@ -1,12 +1,14 @@
 import styles from "./Sidebar.module.scss";
-
 import { useSelector, useDispatch } from "helpers/store";
 import { roundActions } from "store/round-info-slice/reducers";
 import { changeMainCountry } from "store/countries-slice/actions";
 
+import { useTranslation } from "react-i18next";
+
 import Button from "components/UI/Button";
 
 const Sidebar = () => {
+	const { t } = useTranslation();
 	const roundInfoSlice = useSelector(state => state.roundInfo);
 	const dispatch = useDispatch();
 
@@ -30,11 +32,11 @@ const Sidebar = () => {
 				the Neighbors
 			</h1>
 			<div className={styles["sidebar__info-container"]}>
-				<p className={styles["sidebar__info-container__label"]}>Round:</p>
+				<p className={styles["sidebar__info-container__label"]}>{t("round")}:</p>
 				<p className={styles["sidebar__info-container__value"]}>
 					{roundInfoSlice.round}
 				</p>
-				<p className={styles["sidebar__info-container__label"]}>Score:</p>
+				<p className={styles["sidebar__info-container__label"]}>{t("score")}:</p>
 				<p className={styles["sidebar__info-container__value"]} id="score">
 					{roundInfoSlice.score}
 				</p>
@@ -44,10 +46,10 @@ const Sidebar = () => {
 				active={roundInfoSlice.hasGameEnded}
 				onClick={handleNextRoundClick}
 			>
-				Next Country
+				{t("next_round")}
 			</Button>
 			<Button className={styles["sidebar__btn"]} onClick={handleNewGameClick}>
-				New Game
+				{t("new_game")}
 			</Button>
 		</aside>
 	);
