@@ -7,6 +7,7 @@ import ICountry from "types/country-api.types.js";
 import { cardPick } from "helpers/country";
 import { fetchAllCountries } from "store/countries-slice/actions";
 import { roundActions } from "store/round-info-slice/reducers";
+import { useTranslation } from "react-i18next";
 
 import Sidebar from "components/Sidebar";
 import Title from "components/Header/Title";
@@ -15,6 +16,7 @@ import CardArea from "components/Neighbors/CardArea";
 import CountryCard from "components/Neighbors/CountryCard";
 
 const App = () => {
+	const { t } = useTranslation();
 	const countrySlice = useSelector(state => state.countries);
 	const roundInfoSlice = useSelector(state => state.roundInfo);
 	const dispatch = useDispatch();
@@ -57,9 +59,7 @@ const App = () => {
 		dispatch(roundActions.gameEnded(hasWon));
 	}, [roundInfoSlice.rightAnswers, roundInfoSlice.wrongAnswers]);
 
-	const modalMessage = roundInfoSlice.hasWon
-		? "You won! Congratulations!"
-		: "You lost. Try again!";
+	const modalMessage = roundInfoSlice.hasWon ? t("win_text") : t("lose_text");
 
 	return (
 		<div className="game-panel">
