@@ -25,11 +25,13 @@ interface Props {
 const Title: React.FC<Props> = props => {
 	const { t, i18n } = useTranslation();
 	const mainCountry = props.country;
-	const [selectedLanguage, setSelectedLanguage] = useState(i18n.language);
+	const [selectedLanguage, setSelectedLanguage] = useState(
+		languageOptions.find(option => option.value === i18n.language)
+	);
 
 	const handleLanguageChange = event => {
 		i18n.changeLanguage(event.value);
-		setSelectedLanguage(event.value);
+		setSelectedLanguage(event);
 	};
 
 	return (
